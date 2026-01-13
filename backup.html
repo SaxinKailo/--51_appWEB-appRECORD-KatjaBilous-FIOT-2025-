@@ -15,7 +15,6 @@
       --ink:#111;
       --line:#333;
       --muted:#666;
-      --radius:18px;
     }
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
@@ -25,59 +24,18 @@
       font-family: 'Bona Nova', serif;
       color: #00232e;
 
-      /* animated gradient background */
       background: linear-gradient(120deg, #B4DBDB, #CDF0F6, #088092);
       background-size: 200% 200%;
       animation: bgGradient 18s ease infinite;
       position: relative;
       min-height: 100vh;
     }
-
-    body::before,
-    body::after{
-      content:"";
-      position: fixed;
-      inset: -40px;
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0.55;
-      filter: blur(10px);
-      transform: translateZ(0);
-    }
-
-    body::before{
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.35), transparent 45%),
-        radial-gradient(circle at 75% 40%, rgba(255,255,255,0.22), transparent 50%),
-        radial-gradient(circle at 50% 80%, rgba(0,133,153,0.18), transparent 55%);
-      animation: blobs1 26s ease-in-out infinite;
-    }
-
-    body::after{
-      background:
-        radial-gradient(circle at 35% 65%, rgba(255,255,255,0.18), transparent 48%),
-        radial-gradient(circle at 85% 75%, rgba(84,131,132,0.16), transparent 55%),
-        radial-gradient(circle at 10% 85%, rgba(144,197,205,0.20), transparent 60%);
-      animation: blobs2 34s ease-in-out infinite;
-    }
-
     @keyframes bgGradient{
       0%{ background-position: 0% 50%; }
       50%{ background-position: 100% 50%; }
       100%{ background-position: 0% 50%; }
     }
-    @keyframes blobs1{
-      0%{ transform: translate(0,0) scale(1); }
-      50%{ transform: translate(-18px, 14px) scale(1.05); }
-      100%{ transform: translate(0,0) scale(1); }
-    }
-    @keyframes blobs2{
-      0%{ transform: translate(0,0) scale(1); }
-      50%{ transform: translate(16px, -12px) scale(1.06); }
-      100%{ transform: translate(0,0) scale(1); }
-    }
 
-    /* Page */
     .page{
       max-width: 1100px;
       margin: 18px auto;
@@ -95,11 +53,7 @@
       margin-bottom: 12px;
     }
 
-    .logo{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
+    .logo{ display:flex; justify-content:center; align-items:center; }
     .logo img{
       max-width: 80px;
       max-height: 80px;
@@ -108,36 +62,24 @@
     }
     .logo img:hover{ opacity: 1; }
 
-    .title{
-      text-align:center;
-      line-height:1.2;
-    }
+    .title{ text-align:center; line-height:1.2; }
     .title h1{
       margin:0;
       font-size: 20px;
       font-weight: 700;
       text-transform: uppercase;
     }
-    .title h2{
-      margin:6px 0 0;
-      font-size: 16px;
-      font-weight: 700;
-    }
-    .title p{
-      margin:8px 0 0;
-      font-size: 14px;
-    }
+    .title h2{ margin:6px 0 0; font-size: 16px; font-weight: 700; }
+    .title p{ margin:8px 0 0; font-size: 14px; }
 
     .photo{
-      width: 120px;
-      height: 120px;
+      width: 120px; height: 120px;
       border: 2px solid var(--line);
       overflow: hidden;
       border-radius: 8px;
     }
     .photo img{
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       opacity: 0.75;
       transition: opacity .25s ease;
@@ -176,10 +118,7 @@
         0px 0px 4px 2px #008599,
         inset 0px 4px 4px 1px rgba(255, 255, 255, 0.9);
     }
-    .tabs button:active{
-      background:#90C5CD;
-      box-shadow: 0px 0px 4px #548384;
-    }
+    .tabs button:active{ background:#90C5CD; box-shadow: 0px 0px 4px #548384; }
     .tabs button.is-active{
       background:#90C5CD;
       outline: 3px solid rgba(0,0,0,0.08);
@@ -222,10 +161,7 @@
         0px 0px 4px 2px #008599,
         inset 0px 4px 4px 1px rgba(255, 255, 255, 0.9);
     }
-    .menu button:active{
-      background:#90C5CD;
-      box-shadow: 0px 0px 4px #548384;
-    }
+    .menu button:active{ background:#90C5CD; box-shadow: 0px 0px 4px #548384; }
     .menu button.is-active{
       background:#90C5CD;
       outline: 3px solid rgba(0,0,0,0.08);
@@ -240,9 +176,11 @@
       padding: 12px 14px;
     }
     .menu .wide{ padding: 14px 14px; }
+
+    /* ✅ important: when hidden attribute is set, it's really hidden */
     .menu[hidden]{ display:none !important; }
 
-    /* Main content frame */
+    /* Main content */
     main{
       border: 2px solid var(--line);
       min-height: 520px;
@@ -266,18 +204,9 @@
     }
 
     section[hidden]{ display:none !important; }
-    section h3{
-      margin: 12px 0 8px;
-      font-size: 16px;
-    }
-    section h4{
-      margin: 10px 0 8px;
-      font-size: 14px;
-    }
-    section p, section li{
-      font-size: 14px;
-      line-height:1.35;
-    }
+    section h3{ margin: 12px 0 8px; font-size: 16px; }
+    section h4{ margin: 10px 0 8px; font-size: 14px; }
+    section p, section li{ font-size: 14px; line-height:1.35; }
     .muted{ color: var(--muted); }
 
     code, pre{
@@ -292,7 +221,7 @@
       border-radius: 10px;
     }
 
-    /* Demo "MealPrep Buddy hero" inside report */
+    /* Demo hero inside report */
     .home-wrap{
       display:grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -307,21 +236,9 @@
       padding: 18px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
-    .home-title{
-      margin: 0 0 8px 0;
-      font-size: 20px;
-      font-weight: 700;
-    }
-    .home-sub{
-      margin: 0 0 12px 0;
-      opacity: .85;
-    }
-    .home-actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
+    .home-title{ margin: 0 0 8px 0; font-size: 20px; font-weight: 700; }
+    .home-sub{ margin: 0 0 12px 0; opacity: .85; }
+    .home-actions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
     .btn{
       display:inline-flex;
       align-items:center;
@@ -337,14 +254,8 @@
       font-weight:700;
       font-size: 13px;
     }
-    .btn:hover{ background:#CDF0F6; }
-
-    .home-badges{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
+    .btn:hover{ background:#CDF0F6; text-decoration:none; }
+    .home-badges{ display:flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
     .badge{
       font-size: 12px;
       padding: 6px 10px;
@@ -352,7 +263,6 @@
       border: 1px solid rgba(0,0,0,0.08);
       background: rgba(255,255,255,0.7);
     }
-
     .home-features{
       margin-top: 12px;
       display:grid;
@@ -391,75 +301,6 @@
       text-align:center;
     }
 
-    /* Kyiv strip */
-    .kyiv-strip{
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background-image: url("images/kyiv.png");
-      opacity: 0.75;
-      background-repeat: repeat-x;
-      background-position: 0 bottom;
-      background-size: auto 100%;
-      animation: kyiv-move 200s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-    @keyframes kyiv-move{
-      from{ background-position-x: 0; }
-      to{ background-position-x: -2000px; }
-    }
-
-    /* Snow */
-    .snow-bg{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-    .flake{
-      position: absolute;
-      width: 22px;
-      height: 22px;
-      background: url("images/snow.png") no-repeat center / contain;
-      opacity: 0.65;
-      animation:
-        fall var(--fallDur) linear infinite,
-        spin var(--spinDur) linear infinite;
-    }
-    @keyframes fall{
-      from { transform: translate(var(--driftX), -40px) rotate(0deg); }
-      to   { transform: translate(calc(var(--driftX) + var(--driftTo)), 110vh) rotate(0deg); }
-    }
-    @keyframes spin{
-      from { rotate: 0deg; }
-      to   { rotate: 360deg; }
-    }
-
-    .f1{ left: 8%;  top:-60px;  --fallDur: 28s; --spinDur: 18s; --driftX: 0px;  --driftTo: 40px; }
-    .f2{ left: 28%; top:-120px; --fallDur: 34s; --spinDur: 22s; --driftX: 0px;  --driftTo: -30px; }
-    .f3{ left: 52%; top:-90px;  --fallDur: 30s; --spinDur: 20s; --driftX: 0px;  --driftTo: 25px; }
-    .f4{ left: 73%; top:-140px; --fallDur: 38s; --spinDur: 26s; --driftX: 0px;  --driftTo: -35px; }
-    .f5{ left: 90%; top:-80px;  --fallDur: 32s; --spinDur: 24s; --driftX: 0px;  --driftTo: 30px; }
-    .f6{ left: 29%; top:-160px; --fallDur: 42s; --spinDur: 34s; --driftX:0px; --driftTo:-20px; }
-    .f7{ left: 34%; top:-110px; --fallDur: 36s; --spinDur: 26s; --driftX:0px; --driftTo: 35px; }
-    .f8{ left: 39%; top:-200px; --fallDur: 50s; --spinDur: 40s; --driftX:0px; --driftTo:-15px; }
-    .f9{ left: 45%; top:-80px;  --fallDur: 32s; --spinDur: 24s; --driftX:0px; --driftTo: 20px; }
-    .f10{ left: 50%; top:-150px; --fallDur: 44s; --spinDur: 34s; --driftX:0px; --driftTo:-30px; }
-    .f11{ left: 55%; top:-120px; --fallDur: 38s; --spinDur: 28s; --driftX:0px; --driftTo: 30px; }
-    .f12{ left: 60%; top:-190px; --fallDur: 52s; --spinDur: 42s; --driftX:0px; --driftTo:-20px; }
-    .f13{ left: 65%; top:-100px; --fallDur: 34s; --spinDur: 26s; --driftX:0px; --driftTo: 25px; }
-    .f14{ left: 70%; top:-170px; --fallDur: 46s; --spinDur: 36s; --driftX:0px; --driftTo:-35px; }
-    .f15{ left: 75%; top:-90px;  --fallDur: 30s; --spinDur: 22s; --driftX:0px; --driftTo: 20px; }
-    .f16{ left: 80%; top:-160px; --fallDur: 42s; --spinDur: 32s; --driftX:0px; --driftTo:-25px; }
-    .f17{ left: 85%; top:-120px; --fallDur: 36s; --spinDur: 28s; --driftX:0px; --driftTo: 30px; }
-    .f18{ left: 90%; top:-200px; --fallDur: 54s; --spinDur: 44s; --driftX:0px; --driftTo:-20px; }
-    .f19{ left: 95%; top:-80px;  --fallDur: 32s; --spinDur: 24s; --driftX:0px; --driftTo: 25px; }
-    .f20{ left: 98%; top:-150px; --fallDur: 48s; --spinDur: 38s; --driftX:0px; --driftTo:-30px; }
-
     @media (max-width: 900px){
       header{ grid-template-columns: 1fr; }
       .layout{ grid-template-columns: 1fr; }
@@ -495,7 +336,6 @@
       </div>
     </header>
 
-    <!-- Tabs -->
     <nav aria-label="Вкладки лабораторних робіт">
       <ul class="tabs" id="labTabs">
         <li><button class="is-active" data-lab="lab1">Лабораторна робота №1</button></li>
@@ -505,7 +345,7 @@
 
     <div class="layout">
       <aside>
-        <!-- MENU: LAB 1 -->
+        <!-- ✅ Lab 1 menu shows ONLY on lab1 -->
         <div class="menu" id="leftMenuLab1">
           <button class="is-active wide" data-section="meta">Тема, мета, посилання</button>
           <button class="wide" data-section="logic">Опис предметного середовища<br>та бізнес-логіки</button>
@@ -517,13 +357,14 @@
           <button class="indent" data-section="form">HTML-код ФОРМИ</button>
           <button class="indent" data-section="html">HTML-код (фрагмент)</button>
 
+          <!-- ✅ these were missing earlier in your note – restored -->
           <button class="wide" data-section="homePage">Головна сторінка (MealPrep Buddy)</button>
           <button class="wide" data-section="homeCode">Код головної сторінки (MealPrep Buddy)</button>
         </div>
 
-        <!-- MENU: LAB 2 (СЕЛЕКТОРИ + CSS) -->
+        <!-- ✅ Lab 2 menu hidden until lab2 selected -->
         <div class="menu" id="leftMenuLab2" hidden>
-          <button class="is-active wide" data-section="lab2meta">Тема, мета, посилання (ЛР2)</button>
+          <button class="is-active wide" data-section="lab2_meta">Тема, мета, посилання</button>
           <button class="wide" data-section="cssConnect">Способи підключення стилів</button>
 
           <button class="wide" data-section="tagSelectors">Селектори тегу</button>
@@ -532,7 +373,7 @@
           <button class="wide" data-section="otherSelectors">Інші селектори</button>
 
           <button class="wide" data-section="cssShowcase">CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</button>
-          <button class="wide" data-section="lab2Conclusion">Висновки ЛР2</button>
+          <button class="wide" data-section="lab2_conclusion">Висновки</button>
         </div>
       </aside>
 
@@ -554,8 +395,7 @@
               <li>Репозиторій звіту: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
               <li>Жива сторінка звіту: <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
             </ul>
-
-            <p class="muted">Порада: заміни “#” на реальні посилання зі свого GitHub.</p>
+            <p class="muted">Заміни “#” на реальні посилання.</p>
           </section>
 
           <section id="logic" hidden>
@@ -569,12 +409,7 @@
               <li>Формування списку покупок.</li>
               <li>Відмітка «вже є» і очищення позначок.</li>
               <li>Надсилання списку на email (mailto).</li>
-            </ul>
-
-            <h3>Нефункціональні вимоги</h3>
-            <ul>
-              <li>Адаптивність, семантична верстка, кросбраузерність.</li>
-              <li>Збереження даних у localStorage.</li>
+              <li>Збереження даних у <code>localStorage</code>.</li>
             </ul>
           </section>
 
@@ -586,7 +421,6 @@
   &lt;section&gt;...&lt;/section&gt;
 &lt;/main&gt;
 &lt;footer&gt;...&lt;/footer&gt;</code></pre>
-            <p class="muted">Семантичні теги роблять структуру сторінки зрозумілою та доступною.</p>
           </section>
 
           <section id="table" hidden>
@@ -605,7 +439,6 @@
           <section id="image" hidden>
             <h3>HTML-код зображення (приклад)</h3>
             <pre><code>&lt;img src="images/hero.jpg" alt="Їжа та планування покупок"&gt;</code></pre>
-            <p class="muted">Щоб фото заповнювало рамку: CSS <code>object-fit: cover;</code></p>
           </section>
 
           <section id="list" hidden>
@@ -643,6 +476,7 @@
 &lt;/header&gt;</code></pre>
           </section>
 
+          <!-- ✅ Missing section 1 restored -->
           <section id="homePage" hidden>
             <h3>Головна сторінка WEB-застосунку (приклад)</h3>
             <div class="home-wrap" aria-label="Hero-блок MealPrep Buddy">
@@ -683,231 +517,77 @@
                 <img src="images/hero.jpg" alt="Їжа та планування покупок">
               </div>
             </div>
-            <p class="muted" style="margin-top:12px;">
-              Фото заповнює рамку завдяки <code>object-fit: cover</code> та <code>width/height: 100%</code>.
-            </p>
           </section>
 
+          <!-- ✅ Missing section 2 restored -->
           <section id="homeCode" hidden>
             <h3>Код головної сторінки WEB-застосунку (фрагмент)</h3>
-            <pre><code>&lt;div class="home-wrap"&gt;
-  &lt;div class="home-card"&gt;...текст, кнопки...&lt;/div&gt;
+            <pre><code>&lt;section class="hero"&gt;
+  &lt;h1&gt;Плануй харчування на тиждень легко&lt;/h1&gt;
+  &lt;p&gt;Обери страви на кожен день — а ми сформуємо список покупок.&lt;/p&gt;
 
-  &lt;div class="home-photo"&gt;
-    &lt;img src="images/hero.jpg" alt="Їжа та планування покупок"&gt;
+  &lt;div class="hero-actions"&gt;
+    &lt;a class="btn" href="planner.html"&gt;🍽️ Почати планування&lt;/a&gt;
+    &lt;a class="btn" href="shopping.html"&gt;🛒 До списку покупок&lt;/a&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/section&gt;</code></pre>
           </section>
         </div>
 
         <!-- ===================== LAB 2 ===================== -->
         <div class="lab" data-lab="lab2" hidden>
 
-          <section id="lab2meta">
-            <h3>Тема ЛР №2</h3>
-            <p>
-              Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів.
-              Селектори тегу, класу, ідентифікатора. Інші селектори.
-            </p>
-
-            <h3>Мета ЛР №2</h3>
-            <p>
-              Набути практичних навичок роботи з CSS: селекторами тегу/класу/id та іншими типами
-              селекторів. Використати стилізацію для тексту, шрифтів, фону, контурів (border),
-              відступів, списків та додаткових ефектів (анімації, псевдоелементи) у власному WEB-застосунку.
-            </p>
-
-            <h3>Місце розташування сайту та звіту</h3>
-            <ul>
-              <li>Репозиторій WEB-застосунку: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
-              <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
-              <li>Репозиторій звіту: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
-              <li>Жива сторінка звіту: <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
-            </ul>
-
-            <p class="muted">
-              Тут заміни “#” на реальні лінки. Далі кнопками зліва відкривай потрібні секції про селектори.
-            </p>
+          <section id="lab2_meta">
+            <h3>Лабораторна робота №2 — Тема, мета, посилання</h3>
+            <p><strong>Тема:</strong> Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів. Селектори тегу, класу, ідентифікатора.</p>
+            <p><strong>Мета:</strong> набути практичних навичок роботи з CSS: підключення стилів, селектори (tag/class/id/інші), оформлення тексту, фону, контурів, списків та адаптивність.</p>
           </section>
 
           <section id="cssConnect" hidden>
             <h3>Способи підключення стилів</h3>
-
-            <h4>1) Зовнішній CSS-файл</h4>
             <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
-            <p class="muted">Використовується найчастіше: зручно підтримувати й перевикористовувати стилі.</p>
-
-            <h4>2) Внутрішні стилі (всередині &lt;style&gt;)</h4>
             <pre><code>&lt;style&gt;
-  body { font-family: Arial, sans-serif; }
+body{ margin:0; }
 &lt;/style&gt;</code></pre>
-            <p class="muted">Підходить для невеликих сторінок або для “демо” в лабораторній.</p>
-
-            <h4>3) Інлайн-стилі (через атрибут style)</h4>
-            <pre><code>&lt;h1 style="color:#00595C;"&gt;Заголовок&lt;/h1&gt;</code></pre>
-            <p class="muted">Застосовується точково, але зазвичай не рекомендується для великих проєктів.</p>
+            <pre><code>&lt;h1 style="color:#7c5cff;"&gt;MealPrep Buddy&lt;/h1&gt;</code></pre>
           </section>
 
           <section id="tagSelectors" hidden>
             <h3>Селектори тегу</h3>
-            <p>Селектор тегу застосовує стиль до всіх елементів певного типу, наприклад <code>body</code>, <code>h1</code>, <code>p</code>.</p>
-
-            <h4>HTML (приклад)</h4>
-            <pre><code>&lt;h1&gt;MealPrep Buddy&lt;/h1&gt;
-&lt;p&gt;Плануй харчування на тиждень легко&lt;/p&gt;</code></pre>
-
-            <h4>CSS (приклад)</h4>
-            <pre><code>h1{
-  font-size: 28px;
-  font-weight: 700;
-}
-
-p{
-  color: #003a4a;
-  line-height: 1.5;
-}</code></pre>
-
-            <p class="muted">У звіті можна додати скріншот результату після застосування стилів.</p>
-            <!-- <img src="images/lab2_tagselector.png" alt="Селектор тегу" style="max-width:100%; border:1px solid #333; margin-top:10px;"> -->
+            <pre><code>body{ margin:0; }
+a{ text-decoration:none; }
+h1{ font-size: 44px; }</code></pre>
           </section>
 
           <section id="classSelectors" hidden>
             <h3>Селектори класу</h3>
-            <p>Селектор класу працює з елементами, які мають атрибут <code>class</code>. У CSS клас починається з крапки: <code>.className</code>.</p>
-
-            <h4>HTML (приклад)</h4>
-            <pre><code>&lt;div class="card"&gt;
-  &lt;h3&gt;Список покупок&lt;/h3&gt;
-&lt;/div&gt;</code></pre>
-
-            <h4>CSS (приклад)</h4>
-            <pre><code>.card{
-  background: rgba(255,255,255,0.9);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 16px;
-  padding: 14px;
-}</code></pre>
-
-            <p class="muted">
-              Селектори класу — найпопулярніший спосіб стилізувати компоненти (картки, кнопки, блоки).
-            </p>
-            <!-- <img src="images/lab2_classselector.png" alt="Селектор класу" style="max-width:100%; border:1px solid #333; margin-top:10px;"> -->
+            <pre><code>.card{ border-radius:18px; }
+.btn{ border-radius:999px; }</code></pre>
           </section>
 
           <section id="idSelectors" hidden>
             <h3>Селектори ідентифікаторів</h3>
-            <p>Селектор ID використовується для одного унікального елемента на сторінці. У CSS ID починається з <code>#</code>.</p>
-
-            <h4>HTML (приклад)</h4>
-            <pre><code>&lt;div id="shoppingList"&gt;&lt;/div&gt;</code></pre>
-
-            <h4>CSS (приклад)</h4>
-            <pre><code>#shoppingList{
-  border: 1px dashed rgba(0,0,0,0.25);
-  padding: 10px;
-  border-radius: 12px;
-}</code></pre>
-
-            <p class="muted">
-              ID зручно використовувати для конкретних областей (наприклад, контейнер зі списком),
-              а також для зв’язку з JavaScript (document.getElementById).
-            </p>
-            <!-- <img src="images/lab2_idselector.png" alt="Селектор id" style="max-width:100%; border:1px solid #333; margin-top:10px;"> -->
+            <pre><code>#plannerGrid{ position: relative; }
+#shoppingList div{ color: #ffd8a8; }</code></pre>
           </section>
 
           <section id="otherSelectors" hidden>
             <h3>Інші селектори</h3>
-
-            <h4>Універсальний селектор *</h4>
-            <pre><code>*{ box-sizing: border-box; }</code></pre>
-            <p class="muted">Застосовується для базових налаштувань усіх елементів.</p>
-
-            <h4>Дочірній селектор (A B)</h4>
-            <pre><code>.home-photo img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}</code></pre>
-
-            <h4>Сусідній селектор (A + B)</h4>
-            <pre><code>h2 + p{
-  margin-top: 6px;
-}</code></pre>
-
-            <h4>Селектор атрибута</h4>
-            <pre><code>a[target="_blank"]{
-  text-decoration: underline;
-}</code></pre>
-
-            <p class="muted">
-              Ці селектори дозволяють точніше керувати стилями та робити CSS більш гнучким.
-            </p>
+            <pre><code>*{ box-sizing:border-box; }</code></pre>
+            <pre><code>input, textarea, button{ font: inherit; }</code></pre>
+            <pre><code>.btn:hover{ transform: translateY(-1px); }</code></pre>
+            <pre><code>@media (max-width: 860px){ .nav{ display:none; } }</code></pre>
           </section>
 
           <section id="cssShowcase" hidden>
-            <h3>CSS: Шрифти / Текст / Фон / Контур / Списки / Просунутий</h3>
-
-            <h4>Шрифти та текст</h4>
-            <pre><code>body{
-  font-family: 'Bona Nova', serif;
-  color: #00232e;
-}
-
-.muted{
-  color: rgba(0,0,0,.55);
-}</code></pre>
-
-            <h4>Фон і кольори</h4>
-            <pre><code>body{
-  background: linear-gradient(120deg, #B4DBDB, #CDF0F6, #088092);
-}</code></pre>
-
-            <h4>Контур і заокруглення</h4>
-            <pre><code>.box{
-  border: 2px solid #333;
-  border-radius: 16px;
-  padding: 12px;
-}</code></pre>
-
-            <h4>Списки</h4>
-            <pre><code>ul{
-  padding-left: 18px;
-}
-
-li{
-  margin: 6px 0;
-}</code></pre>
-
-            <h4>Просунутий CSS (анімації / псевдоелементи)</h4>
-            <pre><code>.banner::before{
-  content:"";
-  display:block;
-  height: 10px;
-  background: rgba(0,0,0,.12);
-}
-
-@keyframes fadeIn{
-  from{ opacity: 0; }
-  to{ opacity: 1; }
-}</code></pre>
-
-            <p class="muted">
-              У цьому звіті вже є приклад “просунутого” CSS: анімований фон + псевдоелементи body::before/after + анімація.
-            </p>
+            <h3>CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</h3>
+            <p class="muted">Вставиш свої приклади з проєкту.</p>
           </section>
 
-          <section id="lab2Conclusion" hidden>
-            <h3>Висновки до ЛР №2</h3>
-            <p>
-              Під час лабораторної роботи №2 було опрацьовано підключення CSS до HTML-документа,
-              а також використано різні типи селекторів: селектори тегу, класу, ідентифікатора та
-              додаткові селектори (універсальний, дочірній, сусідній, за атрибутом).
-              Налаштовано стилі для шрифтів, тексту, фону, border/radius, списків і реалізовано
-              додаткові візуальні ефекти. Отримані навички дозволяють структурувати CSS та
-              застосовувати стилізацію для реального вебзастосунку.
-            </p>
+          <section id="lab2_conclusion" hidden>
+            <h3>Висновки</h3>
+            <p class="muted">Вставиш висновки.</p>
           </section>
-
         </div>
       </main>
     </div>
@@ -917,18 +597,7 @@ li{
     </footer>
   </div>
 
-  <div class="kyiv-strip" aria-hidden="true"></div>
-
-  <div class="snow-bg" aria-hidden="true">
-    <span class="flake f1"></span><span class="flake f2"></span><span class="flake f3"></span><span class="flake f4"></span>
-    <span class="flake f5"></span><span class="flake f6"></span><span class="flake f7"></span><span class="flake f8"></span>
-    <span class="flake f9"></span><span class="flake f10"></span><span class="flake f11"></span><span class="flake f12"></span>
-    <span class="flake f13"></span><span class="flake f14"></span><span class="flake f15"></span><span class="flake f16"></span>
-    <span class="flake f17"></span><span class="flake f18"></span><span class="flake f19"></span><span class="flake f20"></span>
-  </div>
-
   <script>
-    // Tabs + labs
     const tabBar = document.getElementById('labTabs');
     const labs = document.querySelectorAll('.lab');
     const title = document.getElementById('contentTitle');
@@ -936,39 +605,32 @@ li{
     const menuLab1 = document.getElementById('leftMenuLab1');
     const menuLab2 = document.getElementById('leftMenuLab2');
 
+    function showMenu(labId){
+      // ✅ guarantees: only one menu is visible
+      menuLab1.hidden = (labId !== 'lab1');
+      menuLab2.hidden = (labId !== 'lab2');
+    }
+
     function getActiveLab(){
       return [...labs].find(l => !l.hidden);
-    }
-
-    function getActiveMenu(labId){
-      return (labId === 'lab2') ? menuLab2 : menuLab1;
-    }
-
-    function switchMenus(labId){
-      if(labId === 'lab2'){
-        menuLab1.hidden = true;
-        menuLab2.hidden = false;
-      }else{
-        menuLab1.hidden = false;
-        menuLab2.hidden = true;
-      }
     }
 
     function setActiveSection(sectionId){
       const activeLab = getActiveLab();
       if(!activeLab) return;
 
-      // show/hide sections inside active lab
+      // show only selected section inside active lab
       activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
 
-      // highlight button only inside active menu
-      const activeMenu = getActiveMenu(activeLab.dataset.lab);
+      // highlight in active menu only
+      const activeLabId = activeLab.dataset.lab;
+      const activeMenu = (activeLabId === 'lab1') ? menuLab1 : menuLab2;
+
       activeMenu.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
       const activeBtn = activeMenu.querySelector(`button[data-section="${sectionId}"]`);
       if(activeBtn) activeBtn.classList.add('is-active');
     }
 
-    // Clicking lab tab
     tabBar.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-lab]');
       if(!btn) return;
@@ -977,30 +639,28 @@ li{
       btn.classList.add('is-active');
 
       const labId = btn.dataset.lab;
+
       labs.forEach(l => l.hidden = (l.dataset.lab !== labId));
+      title.textContent = `Лабораторна робота №${labId.replace('lab','')}`;
 
-      const n = labId.replace('lab','');
-      title.textContent = `Лабораторна робота №${n}`;
+      showMenu(labId);
 
-      switchMenus(labId);
-
-      // default first section
-      if(labId === 'lab2') setActiveSection('lab2meta');
-      else setActiveSection('meta');
+      // default section per lab
+      setActiveSection(labId === 'lab1' ? 'meta' : 'lab2_meta');
     });
 
-    // Menu click handler (delegation)
-    function menuClickHandler(e){
-      const btn = e.target.closest('button[data-section]');
-      if(!btn) return;
-      setActiveSection(btn.dataset.section);
+    function attachMenuHandler(menuEl){
+      menuEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-section]');
+        if(!btn) return;
+        setActiveSection(btn.dataset.section);
+      });
     }
-
-    menuLab1.addEventListener('click', menuClickHandler);
-    menuLab2.addEventListener('click', menuClickHandler);
+    attachMenuHandler(menuLab1);
+    attachMenuHandler(menuLab2);
 
     // init
-    switchMenus('lab1');
+    showMenu('lab1');
     setActiveSection('meta');
   </script>
 </body>
