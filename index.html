@@ -15,7 +15,6 @@
       --ink:#111;
       --line:#333;
       --muted:#666;
-      --radius:18px;
     }
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
@@ -31,49 +30,10 @@
       position: relative;
       min-height: 100vh;
     }
-
-    body::before,
-    body::after{
-      content:"";
-      position: fixed;
-      inset: -40px;
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0.55;
-      filter: blur(10px);
-      transform: translateZ(0);
-    }
-
-    body::before{
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.35), transparent 45%),
-        radial-gradient(circle at 75% 40%, rgba(255,255,255,0.22), transparent 50%),
-        radial-gradient(circle at 50% 80%, rgba(0,133,153,0.18), transparent 55%);
-      animation: blobs1 26s ease-in-out infinite;
-    }
-
-    body::after{
-      background:
-        radial-gradient(circle at 35% 65%, rgba(255,255,255,0.18), transparent 48%),
-        radial-gradient(circle at 85% 75%, rgba(84,131,132,0.16), transparent 55%),
-        radial-gradient(circle at 10% 85%, rgba(144,197,205,0.20), transparent 60%);
-      animation: blobs2 34s ease-in-out infinite;
-    }
-
     @keyframes bgGradient{
       0%{ background-position: 0% 50%; }
       50%{ background-position: 100% 50%; }
       100%{ background-position: 0% 50%; }
-    }
-    @keyframes blobs1{
-      0%{ transform: translate(0,0) scale(1); }
-      50%{ transform: translate(-18px, 14px) scale(1.05); }
-      100%{ transform: translate(0,0) scale(1); }
-    }
-    @keyframes blobs2{
-      0%{ transform: translate(0,0) scale(1); }
-      50%{ transform: translate(16px, -12px) scale(1.06); }
-      100%{ transform: translate(0,0) scale(1); }
     }
 
     .page{
@@ -93,11 +53,7 @@
       margin-bottom: 12px;
     }
 
-    .logo{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
+    .logo{ display:flex; justify-content:center; align-items:center; }
     .logo img{
       max-width: 80px;
       max-height: 80px;
@@ -106,36 +62,24 @@
     }
     .logo img:hover{ opacity: 1; }
 
-    .title{
-      text-align:center;
-      line-height:1.2;
-    }
+    .title{ text-align:center; line-height:1.2; }
     .title h1{
       margin:0;
       font-size: 20px;
       font-weight: 700;
       text-transform: uppercase;
     }
-    .title h2{
-      margin:6px 0 0;
-      font-size: 16px;
-      font-weight: 700;
-    }
-    .title p{
-      margin:8px 0 0;
-      font-size: 14px;
-    }
+    .title h2{ margin:6px 0 0; font-size: 16px; font-weight: 700; }
+    .title p{ margin:8px 0 0; font-size: 14px; }
 
     .photo{
-      width: 120px;
-      height: 120px;
+      width: 120px; height: 120px;
       border: 2px solid var(--line);
       overflow: hidden;
       border-radius: 8px;
     }
     .photo img{
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       opacity: 0.75;
       transition: opacity .25s ease;
@@ -174,10 +118,7 @@
         0px 0px 4px 2px #008599,
         inset 0px 4px 4px 1px rgba(255, 255, 255, 0.9);
     }
-    .tabs button:active{
-      background:#90C5CD;
-      box-shadow: 0px 0px 4px #548384;
-    }
+    .tabs button:active{ background:#90C5CD; box-shadow: 0px 0px 4px #548384; }
     .tabs button.is-active{
       background:#90C5CD;
       outline: 3px solid rgba(0,0,0,0.08);
@@ -194,6 +135,7 @@
     }
     aside{ padding-top: 4px; }
 
+    /* Left menus */
     .menu{
       display:flex;
       flex-direction:column;
@@ -219,10 +161,7 @@
         0px 0px 4px 2px #008599,
         inset 0px 4px 4px 1px rgba(255, 255, 255, 0.9);
     }
-    .menu button:active{
-      background:#90C5CD;
-      box-shadow: 0px 0px 4px #548384;
-    }
+    .menu button:active{ background:#90C5CD; box-shadow: 0px 0px 4px #548384; }
     .menu button.is-active{
       background:#90C5CD;
       outline: 3px solid rgba(0,0,0,0.08);
@@ -237,8 +176,11 @@
       padding: 12px 14px;
     }
     .menu .wide{ padding: 14px 14px; }
+
+    /* ✅ important: when hidden attribute is set, it's really hidden */
     .menu[hidden]{ display:none !important; }
 
+    /* Main content */
     main{
       border: 2px solid var(--line);
       min-height: 520px;
@@ -279,7 +221,7 @@
       border-radius: 10px;
     }
 
-    /* Demo "MealPrep Buddy hero" inside report */
+    /* Demo hero inside report */
     .home-wrap{
       display:grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -294,21 +236,9 @@
       padding: 18px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
-    .home-title{
-      margin: 0 0 8px 0;
-      font-size: 20px;
-      font-weight: 700;
-    }
-    .home-sub{
-      margin: 0 0 12px 0;
-      opacity: .85;
-    }
-    .home-actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
+    .home-title{ margin: 0 0 8px 0; font-size: 20px; font-weight: 700; }
+    .home-sub{ margin: 0 0 12px 0; opacity: .85; }
+    .home-actions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
     .btn{
       display:inline-flex;
       align-items:center;
@@ -325,13 +255,7 @@
       font-size: 13px;
     }
     .btn:hover{ background:#CDF0F6; text-decoration:none; }
-
-    .home-badges{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
+    .home-badges{ display:flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
     .badge{
       font-size: 12px;
       padding: 6px 10px;
@@ -339,7 +263,6 @@
       border: 1px solid rgba(0,0,0,0.08);
       background: rgba(255,255,255,0.7);
     }
-
     .home-features{
       margin-top: 12px;
       display:grid;
@@ -422,7 +345,7 @@
 
     <div class="layout">
       <aside>
-        <!-- MENU: LAB 1 (KEEPED FULL) -->
+        <!-- ✅ Lab 1 menu shows ONLY on lab1 -->
         <div class="menu" id="leftMenuLab1">
           <button class="is-active wide" data-section="meta">Тема, мета, посилання</button>
           <button class="wide" data-section="logic">Опис предметного середовища<br>та бізнес-логіки</button>
@@ -434,17 +357,16 @@
           <button class="indent" data-section="form">HTML-код ФОРМИ</button>
           <button class="indent" data-section="html">HTML-код (фрагмент)</button>
 
+          <!-- ✅ these were missing earlier in your note – restored -->
           <button class="wide" data-section="homePage">Головна сторінка (MealPrep Buddy)</button>
           <button class="wide" data-section="homeCode">Код головної сторінки (MealPrep Buddy)</button>
         </div>
 
-        <!-- MENU: LAB 2 (NOW HAS SELECTOR BUTTONS) -->
+        <!-- ✅ Lab 2 menu hidden until lab2 selected -->
         <div class="menu" id="leftMenuLab2" hidden>
           <button class="is-active wide" data-section="lab2_meta">Тема, мета, посилання</button>
-
           <button class="wide" data-section="cssConnect">Способи підключення стилів</button>
 
-          <!-- ✅ The selector buttons you asked for -->
           <button class="wide" data-section="tagSelectors">Селектори тегу</button>
           <button class="wide" data-section="classSelectors">Селектори класу</button>
           <button class="wide" data-section="idSelectors">Селектори ідентифікаторів</button>
@@ -473,8 +395,7 @@
               <li>Репозиторій звіту: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
               <li>Жива сторінка звіту: <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
             </ul>
-
-            <p class="muted">Порада: заміни “#” на реальні посилання зі свого GitHub.</p>
+            <p class="muted">Заміни “#” на реальні посилання.</p>
           </section>
 
           <section id="logic" hidden>
@@ -490,29 +411,6 @@
               <li>Надсилання списку на email (mailto).</li>
               <li>Збереження даних у <code>localStorage</code>.</li>
             </ul>
-
-            <h3>Приклад з твого CSS (як опис бізнес-логіки через UI-компоненти)</h3>
-            <pre><code>:root{
-  --bg:#0b0c10;
-  --card:#12141c;
-  --text:#e9ecf1;
-  --muted:#b3b9c6;
-  --line:rgba(255,255,255,.12);
-  --purple:#7c5cff;
-}
-
-.card{
-  border:1px solid var(--line);
-  background: rgba(18,20,28,.70);
-  border-radius:18px;
-  padding:16px;
-}</code></pre>
-
-            <h3>Нефункціональні вимоги</h3>
-            <ul>
-              <li>Адаптивність, семантична верстка, кросбраузерність.</li>
-              <li>Єдина дизайн-система через CSS-змінні та повторно використані класи.</li>
-            </ul>
           </section>
 
           <section id="structure" hidden>
@@ -523,27 +421,6 @@
   &lt;section&gt;...&lt;/section&gt;
 &lt;/main&gt;
 &lt;footer&gt;...&lt;/footer&gt;</code></pre>
-
-            <h3>Приклад структури з твого сайту (Header + Nav)</h3>
-            <pre><code>/* HEADER */
-.site-header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background: rgba(11,12,16,.72);
-  backdrop-filter: blur(10px);
-  border-bottom:1px solid var(--line);
-}
-
-.nav{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-  font-weight:600;
-}</code></pre>
-
-            <p class="muted">Семантичні теги роблять структуру сторінки зрозумілою та доступною.</p>
           </section>
 
           <section id="table" hidden>
@@ -557,40 +434,11 @@
     &lt;tr&gt;&lt;td&gt;Пн&lt;/td&gt;&lt;td&gt;Салат&lt;/td&gt;&lt;td&gt;Паста&lt;/td&gt;&lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
-
-            <h3>Таблиця з твого CSS (реальний приклад стилів таблиці)</h3>
-            <pre><code>.table-wrap{
-  overflow:auto;
-  border-radius:18px;
-  border:1px solid var(--line);
-}
-.planner{
-  width:100%;
-  border-collapse:collapse;
-  min-width: 640px;
-  background: rgba(255,255,255,.02);
-}
-.planner th, .planner td{
-  padding:12px 12px;
-  border-bottom:1px solid var(--line);
-  text-align:left;
-}</code></pre>
           </section>
 
           <section id="image" hidden>
             <h3>HTML-код зображення (приклад)</h3>
             <pre><code>&lt;img src="images/hero.jpg" alt="Їжа та планування покупок"&gt;</code></pre>
-
-            <h3>Реальний приклад з твого CSS (hero image)</h3>
-            <pre><code>.hero-image img{
-  width:100%;
-  height:400px;
-  object-fit:cover;
-  border-radius:16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}</code></pre>
-
-            <p class="muted">Щоб фото заповнювало рамку: CSS <code>object-fit: cover;</code></p>
           </section>
 
           <section id="list" hidden>
@@ -604,19 +452,6 @@
   &lt;li&gt;Обрати страви&lt;/li&gt;
   &lt;li&gt;Сформувати список&lt;/li&gt;
 &lt;/ol&gt;</code></pre>
-
-            <h3>Реальний приклад списків з твого CSS</h3>
-            <pre><code>.list{
-  margin:10px 0 0 0;
-  padding-left:18px;
-}
-.list li{ margin:6px 0; }
-
-.hero-bullets{
-  margin:0;
-  padding-left:18px;
-  color:var(--muted);
-}</code></pre>
           </section>
 
           <section id="form" hidden>
@@ -627,39 +462,6 @@
   &lt;/label&gt;
   &lt;button type="submit"&gt;Надіслати&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-
-            <h3>Реальний приклад форм з твого CSS</h3>
-            <pre><code>.form .field{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-bottom:12px;
-}
-
-input, textarea, button{
-  background: rgba(255,255,255,.04);
-  border:1px solid var(--line);
-  color: var(--text);
-  padding:10px 12px;
-  border-radius:14px;
-  outline:none;
-  font: inherit;
-}</code></pre>
-
-            <h4>Фікс для select (читабельні опції)</h4>
-            <pre><code>select{
-  background: rgba(255,255,255,.04);
-  border:1px solid var(--line);
-  color: var(--text);
-  padding:10px 12px;
-  border-radius:14px;
-  outline:none;
-  color-scheme: light;
-}
-select option{
-  background: #ffffff;
-  color: #111111;
-}</code></pre>
           </section>
 
           <section id="html" hidden>
@@ -672,18 +474,9 @@ select option{
     &lt;a href="shopping.html"&gt;Список покупок&lt;/a&gt;
   &lt;/nav&gt;
 &lt;/header&gt;</code></pre>
-
-            <h3>Реальний приклад з твого CSS (nav hover)</h3>
-            <pre><code>.nav a{
-  padding:8px 10px;
-  border-radius:12px;
-}
-.nav a:hover{
-  background: rgba(255,255,255,.06);
-  text-decoration:none;
-}</code></pre>
           </section>
 
+          <!-- ✅ Missing section 1 restored -->
           <section id="homePage" hidden>
             <h3>Головна сторінка WEB-застосунку (приклад)</h3>
             <div class="home-wrap" aria-label="Hero-блок MealPrep Buddy">
@@ -724,32 +517,20 @@ select option{
                 <img src="images/hero.jpg" alt="Їжа та планування покупок">
               </div>
             </div>
-
-            <h3 style="margin-top:14px;">Реальні кнопки з твого CSS (уніфікований стиль)</h3>
-            <pre><code>.btn{
-  font-weight: 800;
-  border:1px solid rgba(124,92,255,.55);
-  padding:14px 22px;
-  border-radius:999px;
-  background: linear-gradient(135deg, var(--purple), rgba(124,92,255,.85));
-  box-shadow: 0 10px 24px rgba(124,92,255,.35);
-}</code></pre>
           </section>
 
+          <!-- ✅ Missing section 2 restored -->
           <section id="homeCode" hidden>
             <h3>Код головної сторінки WEB-застосунку (фрагмент)</h3>
-            <pre><code>&lt;div class="hero-actions"&gt;
-  &lt;a class="btn btn-primary" href="planner.html"&gt;🍽️ Почати планування&lt;/a&gt;
-  &lt;a class="btn btn-secondary" href="shopping.html"&gt;🛒 До списку покупок&lt;/a&gt;
-&lt;/div&gt;</code></pre>
+            <pre><code>&lt;section class="hero"&gt;
+  &lt;h1&gt;Плануй харчування на тиждень легко&lt;/h1&gt;
+  &lt;p&gt;Обери страви на кожен день — а ми сформуємо список покупок.&lt;/p&gt;
 
-            <h3>Реальний CSS для hero-actions</h3>
-            <pre><code>.hero-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:14px 0 14px 0;
-}</code></pre>
+  &lt;div class="hero-actions"&gt;
+    &lt;a class="btn" href="planner.html"&gt;🍽️ Почати планування&lt;/a&gt;
+    &lt;a class="btn" href="shopping.html"&gt;🛒 До списку покупок&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
           </section>
         </div>
 
@@ -759,175 +540,53 @@ select option{
           <section id="lab2_meta">
             <h3>Лабораторна робота №2 — Тема, мета, посилання</h3>
             <p><strong>Тема:</strong> Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів. Селектори тегу, класу, ідентифікатора.</p>
-            <p><strong>Мета:</strong> набути практичних навичок роботи з CSS: підключення стилів, селектори (tag/class/id/інші), оформлення тексту, фону, контурів, відступів, списків, анімації та адаптивність.</p>
-            <p class="muted">Сюди ти можеш додати посилання на репозиторій/Pages для ЛР2.</p>
+            <p><strong>Мета:</strong> набути практичних навичок роботи з CSS: підключення стилів, селектори (tag/class/id/інші), оформлення тексту, фону, контурів, списків та адаптивність.</p>
           </section>
 
           <section id="cssConnect" hidden>
             <h3>Способи підключення стилів</h3>
-            <h4>1) Зовнішній CSS-файл</h4>
             <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
-
-            <h4>2) Внутрішні стилі</h4>
             <pre><code>&lt;style&gt;
-  body{ margin:0; }
+body{ margin:0; }
 &lt;/style&gt;</code></pre>
-
-            <h4>3) Інлайн-стиль</h4>
             <pre><code>&lt;h1 style="color:#7c5cff;"&gt;MealPrep Buddy&lt;/h1&gt;</code></pre>
-
-            <p class="muted">
-              У твоєму проєкті основний спосіб — зовнішній файл, бо там зібрані змінні <code>:root</code>, компоненти <code>.card</code>, <code>.btn</code>,
-              і теми сторінок (<code>.page-home.neon</code>, <code>.page-shopping.neon-orange</code>, <code>.page-planner.neon-green</code>).
-            </p>
           </section>
 
           <section id="tagSelectors" hidden>
             <h3>Селектори тегу</h3>
-            <p>Селектор тегу застосовується до всіх елементів певного типу (наприклад <code>body</code>, <code>a</code>, <code>h1</code>).</p>
-
-            <h4>Приклад з твого CSS</h4>
-            <pre><code>body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: var(--bg);
-  color:var(--text);
-  line-height:1.55;
-}
-
-a{ color:inherit; text-decoration:none; }
-a:hover{ text-decoration:underline; }
-
-h1{
-  margin:0 0 10px 0;
-  font-size: clamp(28px, 3.4vw, 44px);
-  line-height:1.12;
-}</code></pre>
+            <pre><code>body{ margin:0; }
+a{ text-decoration:none; }
+h1{ font-size: 44px; }</code></pre>
           </section>
 
           <section id="classSelectors" hidden>
             <h3>Селектори класу</h3>
-            <p>Клас дозволяє багаторазово використовувати однакові стилі для різних елементів.</p>
-
-            <h4>Приклад: <code>.card</code> та <code>.btn</code></h4>
-            <pre><code>.card{
-  border:1px solid var(--line);
-  background: rgba(18,20,28,.70);
-  border-radius:18px;
-  padding:16px;
-  box-shadow: 0 18px 40px rgba(0,0,0,.25);
-}
-
-.btn{
-  font-weight: 800;
-  border:1px solid rgba(124,92,255,.55);
-  padding:14px 22px;
-  border-radius:999px;
-  background: linear-gradient(135deg, var(--purple), rgba(124,92,255,.85));
-}</code></pre>
-
-            <h4>HTML (як використовується)</h4>
-            <pre><code>&lt;div class="card"&gt;
-  &lt;h3&gt;План&lt;/h3&gt;
-  &lt;a class="btn" href="planner.html"&gt;Почати&lt;/a&gt;
-&lt;/div&gt;</code></pre>
+            <pre><code>.card{ border-radius:18px; }
+.btn{ border-radius:999px; }</code></pre>
           </section>
 
           <section id="idSelectors" hidden>
             <h3>Селектори ідентифікаторів</h3>
-            <p>ID — унікальний і використовується для стилізації конкретного елемента або для доступу з JavaScript.</p>
-
-            <h4>Приклад з твого CSS (ID у контексті сторінки)</h4>
-            <pre><code>.page-shopping.neon-orange #shoppingList div{
-  color: #ffd8a8;
-  text-shadow: 0 0 6px rgba(255,140,0,.45);
-}
-
-.page-planner.neon-green #plannerGrid{
-  position: relative;
-  z-index: 1;
-}</code></pre>
-
-            <h4>HTML</h4>
-            <pre><code>&lt;div id="plannerGrid"&gt;...&lt;/div&gt;
-&lt;div id="shoppingList"&gt;...&lt;/div&gt;</code></pre>
+            <pre><code>#plannerGrid{ position: relative; }
+#shoppingList div{ color: #ffd8a8; }</code></pre>
           </section>
 
           <section id="otherSelectors" hidden>
             <h3>Інші селектори</h3>
-
-            <h4>1) Універсальний селектор</h4>
             <pre><code>*{ box-sizing:border-box; }</code></pre>
-
-            <h4>2) Групування селекторів (через кому)</h4>
-            <pre><code>input, textarea, button{
-  background: rgba(255,255,255,.04);
-  border:1px solid var(--line);
-  color: var(--text);
-  padding:10px 12px;
-  border-radius:14px;
-}</code></pre>
-
-            <h4>3) Псевдоклас <code>:hover</code></h4>
-            <pre><code>.btn:hover{
-  text-decoration:none;
-}</code></pre>
-
-            <h4>4) Media query (адаптивність)</h4>
-            <pre><code>@media (max-width: 860px){
-  .nav{ display:none; }
-  .menu-btn{ display:inline-flex; }
-}</code></pre>
+            <pre><code>input, textarea, button{ font: inherit; }</code></pre>
+            <pre><code>.btn:hover{ transform: translateY(-1px); }</code></pre>
+            <pre><code>@media (max-width: 860px){ .nav{ display:none; } }</code></pre>
           </section>
 
           <section id="cssShowcase" hidden>
-            <h3>CSS: Шрифти / Текст / Фон / Контур / Списки / Просунутий</h3>
-
-            <h4>Палітра змінних</h4>
-            <pre><code>:root{
-  --bg:#0b0c10;
-  --card:#12141c;
-  --text:#e9ecf1;
-  --muted:#b3b9c6;
-  --line:rgba(255,255,255,.12);
-  --purple:#7c5cff;
-}</code></pre>
-
-            <h4>Фони (градієнти)</h4>
-            <pre><code>body{
-  background:
-    radial-gradient(1200px 700px at 15% 10%, rgba(96,165,250,.18), transparent 55%),
-    radial-gradient(1100px 700px at 85% 5%, rgba(110,231,183,.14), transparent 55%),
-    var(--bg);
-}</code></pre>
-
-            <h4>Компонент-кнопка (уніфікований стиль)</h4>
-            <pre><code>.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  border-radius:999px;
-  padding:14px 22px;
-  background: linear-gradient(135deg, var(--purple), rgba(124,92,255,.85));
-  box-shadow: 0 10px 24px rgba(124,92,255,.35);
-}</code></pre>
-
-            <h4>Теми сторінок (неон-ефекти)</h4>
-            <pre><code>.page-home.neon .btn{
-  background: linear-gradient(135deg, #ec4899, #a855f7, #6366f1);
-  box-shadow: 0 0 12px rgba(236,72,153,.9);
-}</code></pre>
+            <h3>CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</h3>
+            <p class="muted">Вставиш свої приклади з проєкту.</p>
           </section>
 
           <section id="lab2_conclusion" hidden>
             <h3>Висновки</h3>
-            <p>
-              У ході ЛР №2 було відпрацьовано роботу з CSS та селекторами: тегів, класів, ідентифікаторів і додаткових селекторів.
-              Реалізовано єдину дизайн-систему через CSS-змінні, компоненти (<code>.card</code>, <code>.btn</code>) і теми сторінок
-              (<code>.page-home.neon</code>, <code>.page-planner.neon-green</code>, <code>.page-shopping.neon-orange</code>),
-              а також адаптивність за допомогою <code>@media</code>.
-            </p>
+            <p class="muted">Вставиш висновки.</p>
           </section>
         </div>
       </main>
@@ -939,7 +598,6 @@ h1{
   </div>
 
   <script>
-    // Tabs: labs
     const tabBar = document.getElementById('labTabs');
     const labs = document.querySelectorAll('.lab');
     const title = document.getElementById('contentTitle');
@@ -948,13 +606,9 @@ h1{
     const menuLab2 = document.getElementById('leftMenuLab2');
 
     function showMenu(labId){
-      if(labId === 'lab1'){
-        menuLab1.hidden = false;
-        menuLab2.hidden = true;
-      } else if(labId === 'lab2'){
-        menuLab1.hidden = true;
-        menuLab2.hidden = false;
-      }
+      // ✅ guarantees: only one menu is visible
+      menuLab1.hidden = (labId !== 'lab1');
+      menuLab2.hidden = (labId !== 'lab2');
     }
 
     function getActiveLab(){
@@ -965,10 +619,10 @@ h1{
       const activeLab = getActiveLab();
       if(!activeLab) return;
 
-      // show only selected section in active lab
+      // show only selected section inside active lab
       activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
 
-      // highlight in correct menu
+      // highlight in active menu only
       const activeLabId = activeLab.dataset.lab;
       const activeMenu = (activeLabId === 'lab1') ? menuLab1 : menuLab2;
 
@@ -977,7 +631,6 @@ h1{
       if(activeBtn) activeBtn.classList.add('is-active');
     }
 
-    // Tab click -> switch lab
     tabBar.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-lab]');
       if(!btn) return;
@@ -986,19 +639,16 @@ h1{
       btn.classList.add('is-active');
 
       const labId = btn.dataset.lab;
-      labs.forEach(l => l.hidden = (l.dataset.lab !== labId));
 
-      const n = labId.replace('lab','');
-      title.textContent = `Лабораторна робота №${n}`;
+      labs.forEach(l => l.hidden = (l.dataset.lab !== labId));
+      title.textContent = `Лабораторна робота №${labId.replace('lab','')}`;
 
       showMenu(labId);
 
       // default section per lab
-      if(labId === 'lab1') setActiveSection('meta');
-      if(labId === 'lab2') setActiveSection('lab2_meta');
+      setActiveSection(labId === 'lab1' ? 'meta' : 'lab2_meta');
     });
 
-    // Menu handlers (event delegation)
     function attachMenuHandler(menuEl){
       menuEl.addEventListener('click', (e) => {
         const btn = e.target.closest('button[data-section]');
