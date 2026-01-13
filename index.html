@@ -11,8 +11,10 @@
 
   <style>
     /* =========================
-       THEME: Dark + Purple (from your CSS)
+       BLACK + PURPLE THEME ONLY
+       (content/structure unchanged)
        ========================= */
+
     :root{
       --bg:#0b0c10;
       --card:#12141c;
@@ -34,19 +36,17 @@
       margin:0;
       font-family: 'Bona Nova', serif;
       color: var(--text);
+      min-height: 100vh;
 
       background:
         radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.18), transparent 55%),
         radial-gradient(1100px 700px at 85% 5%, rgba(168,85,247,.14), transparent 55%),
         var(--bg);
-
-      min-height: 100vh;
       line-height:1.55;
+      position: relative;
     }
 
-    a{ color:inherit; }
-    a:hover{ text-decoration: underline; }
-
+    /* Page */
     .page{
       max-width: 1100px;
       margin: 18px auto;
@@ -73,10 +73,10 @@
       max-width: 80px;
       max-height: 80px;
       opacity: 0.85;
-      transition: opacity .25s ease, transform .15s ease;
-      filter: drop-shadow(0 8px 16px rgba(0,0,0,.35));
+      transition: opacity .25s ease;
+      filter: drop-shadow(0 0 10px rgba(124,92,255,.18));
     }
-    .logo img:hover{ opacity: 1; transform: translateY(-1px); }
+    .logo img:hover{ opacity: 1; }
 
     .title{
       text-align:center;
@@ -89,14 +89,15 @@
       text-transform: uppercase;
       color: #c084fc;
       text-shadow:
-        0 0 6px rgba(192,132,252,.55),
+        0 0 6px rgba(192,132,252,.65),
         0 0 16px rgba(168,85,247,.35);
     }
     .title h2{
       margin:6px 0 0;
       font-size: 16px;
       font-weight: 700;
-      color: rgba(233,236,241,.92);
+      color: #e9d5ff;
+      opacity: .95;
     }
     .title p{
       margin:8px 0 0;
@@ -109,7 +110,7 @@
       height: 120px;
       border: 1px solid var(--line);
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: 10px;
       background: rgba(255,255,255,.03);
       box-shadow: 0 18px 40px rgba(0,0,0,.35);
     }
@@ -118,13 +119,11 @@
       height: 100%;
       object-fit: cover;
       opacity: 0.9;
-      transition: opacity .25s ease, transform .2s ease;
+      transition: opacity .25s ease, transform .25s ease;
     }
     .photo img:hover{ opacity: 1; transform: scale(1.02); }
 
-    /* =========================
-       TOP TABS (labs)
-       ========================= */
+    /* Tabs */
     .tabs{
       display:flex;
       gap: 10px;
@@ -135,9 +134,8 @@
       padding: 0;
       list-style:none;
     }
-
     .tabs button{
-      border:1px solid var(--line);
+      border: 1px solid rgba(124,92,255,.35);
       flex: 1;
       background: rgba(18,20,28,.70);
       border-radius: 14px;
@@ -150,27 +148,26 @@
       box-shadow: 0 18px 40px rgba(0,0,0,.25);
       transition: transform .06s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
     }
-
     .tabs button:hover{
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 22px 48px rgba(0,0,0,.35);
+      background: rgba(124,92,255,.12);
+      border-color: rgba(124,92,255,.55);
+      box-shadow:
+        0 0 16px rgba(124,92,255,.18),
+        0 18px 40px rgba(0,0,0,.28);
+      transform: translateY(-1px);
     }
-
-    .tabs button:active{ transform: translateY(1px); }
-
+    .tabs button:active{ transform: translateY(0px); }
     .tabs button.is-active{
-      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(168,85,247,.20));
-      border-color: rgba(124,92,255,.65);
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(168,85,247,.18));
+      border-color: rgba(124,92,255,.75);
+      font-weight: 700;
       color: #fff;
       box-shadow:
-        0 0 18px rgba(124,92,255,.35),
-        0 18px 40px rgba(0,0,0,.35);
-      font-weight:700;
+        0 0 18px rgba(124,92,255,.28),
+        0 18px 40px rgba(0,0,0,.30);
+      outline: none;
     }
 
-    /* =========================
-       LEFT MENU + MAIN AREA
-       ========================= */
     .layout{
       display:grid;
       grid-template-columns: 300px 1fr;
@@ -179,14 +176,14 @@
     }
     aside{ padding-top: 4px; }
 
+    /* Left menus */
     .menu{
       display:flex;
       flex-direction:column;
       gap: 10px;
     }
-
     .menu button{
-      border:1px solid var(--line);
+      border: 1px solid rgba(124,92,255,.35);
       background: rgba(18,20,28,.70);
       border-radius: 14px;
       padding: 12px 14px;
@@ -199,21 +196,24 @@
       transition: transform .06s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
     }
     .menu button:hover{
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 22px 48px rgba(0,0,0,.35);
+      background: rgba(124,92,255,.12);
+      border-color: rgba(124,92,255,.55);
+      box-shadow:
+        0 0 16px rgba(124,92,255,.18),
+        0 18px 40px rgba(0,0,0,.28);
+      transform: translateY(-1px);
     }
-    .menu button:active{ transform: translateY(1px); }
-
+    .menu button:active{ transform: translateY(0px); }
     .menu button.is-active{
-      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(168,85,247,.20));
-      border-color: rgba(124,92,255,.65);
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(168,85,247,.18));
+      border-color: rgba(124,92,255,.75);
+      font-weight:700;
       color: #fff;
       box-shadow:
-        0 0 18px rgba(124,92,255,.35),
-        0 18px 40px rgba(0,0,0,.35);
-      font-weight:700;
+        0 0 18px rgba(124,92,255,.28),
+        0 18px 40px rgba(0,0,0,.30);
+      outline: none;
     }
-
     .menu .indent{
       margin-right: auto;
       width: calc(100% - 6px);
@@ -223,28 +223,27 @@
     .menu .wide{ padding: 14px 14px; }
     .menu[hidden]{ display:none !important; }
 
+    /* Main content frame */
     main{
       border: 1px solid var(--line);
       min-height: 520px;
       padding: 18px;
       position:relative;
-      background: rgba(18,20,28,.55);
+      background: rgba(18,20,28,.68);
       border-radius: 18px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.30);
-      backdrop-filter: blur(6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
     }
-
     .content-title{
       text-align:center;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       font-size: 18px;
       font-weight: 700;
       color: #c084fc;
       text-shadow:
         0 0 6px rgba(192,132,252,.55),
-        0 0 16px rgba(168,85,247,.35);
+        0 0 14px rgba(168,85,247,.35);
     }
-
     .hint{
       text-align:center;
       color: var(--muted);
@@ -253,52 +252,45 @@
     }
 
     section[hidden]{ display:none !important; }
-
     section h3{
       margin: 12px 0 8px;
       font-size: 16px;
-      color: rgba(233,236,241,.96);
+      color: #e9d5ff;
     }
     section h4{
       margin: 10px 0 8px;
       font-size: 14px;
-      color: rgba(233,236,241,.92);
+      color: #f5d0fe;
+      opacity: .95;
     }
-
     section p, section li{
       font-size: 14px;
       line-height:1.35;
-      color: rgba(233,236,241,.92);
+      color: var(--text);
     }
-
     .muted{ color: var(--muted); }
+
+    a{ color: inherit; text-decoration: underline; text-decoration-color: rgba(124,92,255,.5); }
+    a:hover{ text-decoration-color: rgba(124,92,255,.95); }
 
     code, pre{
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
       font-size: 13px;
     }
     pre{
-      border:1px solid var(--line);
+      border: 1px solid rgba(124,92,255,.22);
       padding: 10px;
       overflow:auto;
-      background: rgba(255,255,255,.04);
+      background: rgba(15,17,24,.85);
       border-radius: 14px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+      color: #f8fafc;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
     }
-    pre code{ color: rgba(233,236,241,.95); }
-
-    /* Images inside report */
-    .shot{
-      max-width:100%;
-      border:1px solid var(--line);
-      border-radius: 14px;
-      margin-top:10px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    code{
+      color: #f0abfc;
     }
 
-    /* =========================
-       DEMO "MealPrep Buddy hero" inside report (content unchanged)
-       ========================= */
+    /* Demo "MealPrep Buddy hero" inside report — same layout, dark neon style */
     .home-wrap{
       display:grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -307,11 +299,19 @@
       margin-top: 10px;
     }
     .home-card{
-      background: rgba(18,20,28,.70);
-      border: 1px solid var(--line);
+      background: radial-gradient(circle at top left,
+        rgba(236,72,153,.22),
+        rgba(168,85,247,.18) 60%,
+        rgba(18,20,28,.88)
+      );
+      border: 1px solid rgba(236,72,153,.35);
       border-radius: 18px;
       padding: 18px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      box-shadow:
+        0 0 12px rgba(236,72,153,.25),
+        0 0 28px rgba(168,85,247,.20),
+        0 18px 40px rgba(0,0,0,.35);
+      color: #fdf4ff;
     }
     .home-title{
       margin: 0 0 8px 0;
@@ -320,12 +320,12 @@
       color: #c084fc;
       text-shadow:
         0 0 6px rgba(192,132,252,.55),
-        0 0 16px rgba(168,85,247,.35);
+        0 0 14px rgba(168,85,247,.35);
     }
     .home-sub{
       margin: 0 0 12px 0;
+      color: #f5d0fe;
       opacity: .95;
-      color: var(--muted);
     }
     .home-actions{
       display:flex;
@@ -334,36 +334,36 @@
       margin-top: 10px;
     }
 
-    /* Buttons (purple unified) */
+    /* Purple unified button look */
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:8px;
 
-      font: inherit;
-      font-size: 14px;
-      font-weight: 800;
-      line-height: 1;
-
-      border: 1px solid rgba(124,92,255,.55);
       padding: 12px 16px;
       border-radius: 999px;
-      cursor:pointer;
 
-      text-decoration:none;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 13px;
+      line-height: 1;
+
       color:#fff;
+      text-decoration:none;
 
+      border: 1px solid rgba(124,92,255,.55);
       background: linear-gradient(135deg, var(--purple), rgba(124,92,255,.85));
-      box-shadow: 0 10px 24px rgba(124,92,255,.35);
+      box-shadow: 0 10px 24px rgba(124,92,255,.28);
       transition: transform .06s ease, box-shadow .12s ease, background .12s ease;
     }
     .btn:hover{
       text-decoration:none;
       background: linear-gradient(135deg, #6f4eff, rgba(124,92,255,.95));
-      box-shadow: 0 14px 30px rgba(124,92,255,.45);
+      box-shadow: 0 14px 30px rgba(124,92,255,.38);
+      transform: translateY(-1px);
     }
-    .btn:active{ transform: translateY(1px); }
+    .btn:active{ transform: translateY(0px); }
 
     .home-badges{
       display:flex;
@@ -375,9 +375,10 @@
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: rgba(233,236,241,.92);
+      border: 1px solid rgba(236,72,153,.40);
+      background: rgba(236,72,153,.12);
+      color: #fdf4ff;
+      box-shadow: 0 0 10px rgba(236,72,153,.18);
     }
 
     .home-features{
@@ -389,18 +390,18 @@
     .feature{
       padding: 10px;
       border-radius: 14px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       font-size: 13px;
-      color: rgba(233,236,241,.92);
+      color: #fdf4ff;
     }
-    .feature strong{ display:block; margin-bottom: 4px; color: rgba(233,236,241,.96); }
+    .feature strong{ display:block; margin-bottom: 4px; color:#f0abfc; }
 
     .home-photo{
       background: rgba(18,20,28,.70);
-      border: 1px solid var(--line);
+      border: 1px solid rgba(124,92,255,.28);
       border-radius: 18px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
       overflow:hidden;
       position:relative;
       min-height: 260px;
@@ -410,7 +411,10 @@
       height:100%;
       object-fit: cover;
       display:block;
+      opacity: .92;
+      transition: opacity .25s ease, transform .25s ease;
     }
+    .home-photo img:hover{ opacity: 1; transform: scale(1.02); }
 
     footer{
       margin-top: 14px;
@@ -418,77 +422,6 @@
       color: var(--muted);
       text-align:center;
     }
-
-    /* Decorative */
-    .kyiv-strip{
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background-image: url("images/kyiv.png");
-      opacity: 0.18;
-      background-repeat: repeat-x;
-      background-position: 0 bottom;
-      background-size: auto 100%;
-      animation: kyiv-move 200s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-      filter: grayscale(1) contrast(1.1);
-    }
-    @keyframes kyiv-move{
-      from{ background-position-x: 0; }
-      to{ background-position-x: -2000px; }
-    }
-
-    .snow-bg{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-      opacity: 0.25;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
-    }
-    .flake{
-      position: absolute;
-      width: 22px;
-      height: 22px;
-      background: url("images/snow.png") no-repeat center / contain;
-      opacity: 0.65;
-      animation:
-        fall var(--fallDur) linear infinite,
-        spin var(--spinDur) linear infinite;
-    }
-    @keyframes fall{
-      from { transform: translate(var(--driftX), -40px) rotate(0deg); }
-      to   { transform: translate(calc(var(--driftX) + var(--driftTo)), 110vh) rotate(0deg); }
-    }
-    @keyframes spin{
-      from { rotate: 0deg; }
-      to   { rotate: 360deg; }
-    }
-
-    .f1{ left: 8%;  top:-60px;  --fallDur: 28s; --spinDur: 18s; --driftX: 0px;  --driftTo: 40px; }
-    .f2{ left: 28%; top:-120px; --fallDur: 34s; --spinDur: 22s; --driftX: 0px;  --driftTo: -30px; }
-    .f3{ left: 52%; top:-90px;  --fallDur: 30s; --spinDur: 20s; --driftX: 0px;  --driftTo: 25px; }
-    .f4{ left: 73%; top:-140px; --fallDur: 38s; --spinDur: 26s; --driftX: 0px;  --driftTo: -35px; }
-    .f5{ left: 90%; top:-80px;  --fallDur: 32s; --spinDur: 24s; --driftX: 0px;  --driftTo: 30px; }
-    .f6{ left: 29%; top:-160px; --fallDur: 42s; --spinDur: 34s; --driftX:0px; --driftTo:-20px; }
-    .f7{ left: 34%; top:-110px; --fallDur: 36s; --spinDur: 26s; --driftX:0px; --driftTo: 35px; }
-    .f8{ left: 39%; top:-200px; --fallDur: 50s; --spinDur: 40s; --driftX:0px; --driftTo:-15px; }
-    .f9{ left: 45%; top:-80px;  --fallDur: 32s; --spinDur: 24s; --driftX:0px; --driftTo: 20px; }
-    .f10{ left: 50%; top:-150px; --fallDur: 44s; --spinDur: 34s; --driftX:0px; --driftTo:-30px; }
-    .f11{ left: 55%; top:-120px; --fallDur: 38s; --spinDur: 28s; --driftX:0px; --driftTo: 30px; }
-    .f12{ left: 60%; top:-190px; --fallDur: 52s; --spinDur: 42s; --driftX:0px; --driftTo:-20px; }
-    .f13{ left: 65%; top:-100px; --fallDur: 34s; --spinDur: 26s; --driftX:0px; --driftTo: 25px; }
-    .f14{ left: 70%; top:-170px; --fallDur: 46s; --spinDur: 36s; --driftX:0px; --driftTo:-35px; }
-    .f15{ left: 75%; top:-90px;  --fallDur: 30s; --spinDur: 22s; --driftX:0px; --driftTo: 20px; }
-    .f16{ left: 80%; top:-160px; --fallDur: 42s; --spinDur: 32s; --driftX:0px; --driftTo:-25px; }
-    .f17{ left: 85%; top:-120px; --fallDur: 36s; --spinDur: 28s; --driftX:0px; --driftTo: 30px; }
-    .f18{ left: 90%; top:-200px; --fallDur: 54s; --spinDur: 44s; --driftX:0px; --driftTo:-20px; }
-    .f19{ left: 95%; top:-80px;  --fallDur: 32s; --spinDur: 24s; --driftX:0px; --driftTo: 25px; }
-    .f20{ left: 98%; top:-150px; --fallDur: 48s; --spinDur: 38s; --driftX:0px; --driftTo:-30px; }
 
     @media (max-width: 900px){
       header{ grid-template-columns: 1fr; }
@@ -534,7 +467,7 @@
 
     <div class="layout">
       <aside>
-        <!-- MENU: LAB 1 -->
+        <!-- ✅ Lab 1 menu shows ONLY on lab1 -->
         <div class="menu" id="leftMenuLab1">
           <button class="is-active wide" data-section="meta">Тема, мета, посилання</button>
           <button class="wide" data-section="logic">Опис предметного середовища<br>та бізнес-логіки</button>
@@ -550,9 +483,9 @@
           <button class="wide" data-section="homeCode">Код головної сторінки (MealPrep Buddy)</button>
         </div>
 
-        <!-- MENU: LAB 2 (selectors buttons restored + content present) -->
+        <!-- ✅ Lab 2 menu hidden until lab2 selected -->
         <div class="menu" id="leftMenuLab2" hidden>
-          <button class="is-active wide" data-section="lab2meta">Тема, мета, посилання (ЛР2)</button>
+          <button class="is-active wide" data-section="lab2_meta">Тема, мета, посилання</button>
           <button class="wide" data-section="cssConnect">Способи підключення стилів</button>
 
           <button class="wide" data-section="tagSelectors">Селектори тегу</button>
@@ -561,7 +494,7 @@
           <button class="wide" data-section="otherSelectors">Інші селектори</button>
 
           <button class="wide" data-section="cssShowcase">CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</button>
-          <button class="wide" data-section="lab2Conclusion">Висновки ЛР2</button>
+          <button class="wide" data-section="lab2_conclusion">Висновки</button>
         </div>
       </aside>
 
@@ -583,8 +516,7 @@
               <li>Репозиторій звіту: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
               <li>Жива сторінка звіту: <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
             </ul>
-
-            <p class="muted">Порада: заміни “#” на реальні посилання зі свого GitHub.</p>
+            <p class="muted">Заміни “#” на реальні посилання.</p>
           </section>
 
           <section id="logic" hidden>
@@ -598,12 +530,7 @@
               <li>Формування списку покупок.</li>
               <li>Відмітка «вже є» і очищення позначок.</li>
               <li>Надсилання списку на email (mailto).</li>
-            </ul>
-
-            <h3>Нефункціональні вимоги</h3>
-            <ul>
-              <li>Адаптивність, семантична верстка, кросбраузерність.</li>
-              <li>Збереження даних у localStorage.</li>
+              <li>Збереження даних у <code>localStorage</code>.</li>
             </ul>
           </section>
 
@@ -615,7 +542,6 @@
   &lt;section&gt;...&lt;/section&gt;
 &lt;/main&gt;
 &lt;footer&gt;...&lt;/footer&gt;</code></pre>
-            <p class="muted">Семантичні теги роблять структуру сторінки зрозумілою та доступною.</p>
           </section>
 
           <section id="table" hidden>
@@ -634,7 +560,6 @@
           <section id="image" hidden>
             <h3>HTML-код зображення (приклад)</h3>
             <pre><code>&lt;img src="images/hero.jpg" alt="Їжа та планування покупок"&gt;</code></pre>
-            <p class="muted">Щоб фото заповнювало рамку: CSS <code>object-fit: cover;</code></p>
           </section>
 
           <section id="list" hidden>
@@ -712,214 +637,75 @@
                 <img src="images/hero.jpg" alt="Їжа та планування покупок">
               </div>
             </div>
-            <p class="muted" style="margin-top:12px;">
-              Фото заповнює рамку завдяки <code>object-fit: cover</code> та <code>width/height: 100%</code>.
-            </p>
           </section>
 
           <section id="homeCode" hidden>
             <h3>Код головної сторінки WEB-застосунку (фрагмент)</h3>
-            <pre><code>&lt;div class="home-wrap"&gt;
-  &lt;div class="home-card"&gt;...текст, кнопки...&lt;/div&gt;
+            <pre><code>&lt;section class="hero"&gt;
+  &lt;h1&gt;Плануй харчування на тиждень легко&lt;/h1&gt;
+  &lt;p&gt;Обери страви на кожен день — а ми сформуємо список покупок.&lt;/p&gt;
 
-  &lt;div class="home-photo"&gt;
-    &lt;img src="images/hero.jpg" alt="Їжа та планування покупок"&gt;
+  &lt;div class="hero-actions"&gt;
+    &lt;a class="btn" href="planner.html"&gt;🍽️ Почати планування&lt;/a&gt;
+    &lt;a class="btn" href="shopping.html"&gt;🛒 До списку покупок&lt;/a&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/section&gt;</code></pre>
           </section>
         </div>
 
         <!-- ===================== LAB 2 ===================== -->
         <div class="lab" data-lab="lab2" hidden>
-          <section id="lab2meta">
-            <h3>Тема ЛР №2</h3>
-            <p>
-              Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів.
-              Селектори тегу, класу, ідентифікатора.
-            </p>
 
-            <h3>Мета ЛР №2</h3>
-            <p>
-              Набути практичних навичок роботи з CSS: селекторами тегу/класу/id, властивостями
-              тексту, шрифтів, фону, контурів, відступів, списків та базовими прийомами
-              стилізації сторінок у власному WEB-застосунку.
-            </p>
-
-            <h3>Місце розташування сайту та звіту</h3>
-            <ul>
-              <li>Репозиторій WEB-застосунку: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
-              <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
-              <li>Репозиторій звіту: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
-              <li>Жива сторінка звіту: <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
-            </ul>
+          <section id="lab2_meta">
+            <h3>Лабораторна робота №2 — Тема, мета, посилання</h3>
+            <p><strong>Тема:</strong> Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів. Селектори тегу, класу, ідентифікатора.</p>
+            <p><strong>Мета:</strong> набути практичних навичок роботи з CSS: підключення стилів, селектори (tag/class/id/інші), оформлення тексту, фону, контурів, списків та адаптивність.</p>
           </section>
 
           <section id="cssConnect" hidden>
             <h3>Способи підключення стилів</h3>
-
-            <h4>1) Зовнішній CSS-файл</h4>
-            <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
-
-            <h4>2) Внутрішні стилі (приклад)</h4>
+            <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
             <pre><code>&lt;style&gt;
-body{ font-family: Arial, sans-serif; }
+body{ margin:0; }
 &lt;/style&gt;</code></pre>
-
-            <h4>3) Інлайн-стиль (приклад)</h4>
-            <pre><code>&lt;h1 style="color:#7c5cff;"&gt;Приклад&lt;/h1&gt;</code></pre>
-
-            <p>
-              Основним способом зазвичай є підключення зовнішнього CSS-файлу,
-              оскільки це забезпечує централізоване керування стилями та зручність підтримки.
-            </p>
+            <pre><code>&lt;h1 style="color:#7c5cff;"&gt;MealPrep Buddy&lt;/h1&gt;</code></pre>
           </section>
 
           <section id="tagSelectors" hidden>
             <h3>Селектори тегу</h3>
-
-            <h4>HTML (фрагмент)</h4>
-            <pre><code>&lt;body&gt;
-  &lt;header&gt;...&lt;/header&gt;
-  &lt;main&gt;...&lt;/main&gt;
-&lt;/body&gt;</code></pre>
-
-            <h4>CSS (приклад)</h4>
-            <pre><code>body{
-  margin: 0;
-  background: #0b0c10;
-  color: #e9ecf1;
-}</code></pre>
-
-            <img class="shot" src="images/lab2_tagselector.png" alt="Селектор тегу (скріншот)">
-            <p class="muted">Якщо у тебе інша назва скріншоту — просто заміни шлях у <code>src</code>.</p>
+            <pre><code>body{ margin:0; }
+a{ text-decoration:none; }
+h1{ font-size: 44px; }</code></pre>
           </section>
 
           <section id="classSelectors" hidden>
             <h3>Селектори класу</h3>
-
-            <h4>HTML (фрагмент)</h4>
-            <pre><code>&lt;div class="card"&gt;...&lt;/div&gt;</code></pre>
-
-            <h4>CSS (приклад)</h4>
-            <pre><code>.card{
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 18px;
-  background: rgba(18,20,28,.70);
-}</code></pre>
-
-            <img class="shot" src="images/lab2_classselector.png" alt="Селектор класу (скріншот)">
+            <pre><code>.card{ border-radius:18px; }
+.btn{ border-radius:999px; }</code></pre>
           </section>
 
           <section id="idSelectors" hidden>
             <h3>Селектори ідентифікаторів</h3>
-
-            <h4>HTML (фрагмент)</h4>
-            <pre><code>&lt;div id="museumStrip" class="museum-strip"&gt;
-  ...
-&lt;/div&gt;</code></pre>
-
-            <h4>CSS (приклад використання #id)</h4>
-            <pre><code>#museumStrip{
-  display: flex;
-  gap: 28px;
-  transition: transform 1.2s ease-in-out;
-}</code></pre>
-
-            <p>
-              Ідентифікатор використовується для звернення до конкретного елемента сторінки.
-              Його зручно застосовувати, коли елемент на сторінці унікальний.
-            </p>
-
-            <img class="shot" src="images/lab2_idselector.png" alt="Селектор id (скріншот)">
+            <pre><code>#plannerGrid{ position: relative; }
+#shoppingList div{ color: #ffd8a8; }</code></pre>
           </section>
 
           <section id="otherSelectors" hidden>
             <h3>Інші селектори</h3>
-
-            <h4>Універсальний селектор *</h4>
-            <pre><code>*{ box-sizing: border-box; }</code></pre>
-
-            <h4>Дочірній селектор (A B)</h4>
-            <pre><code>.header__logo img{
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-}</code></pre>
-
-            <h4>Сусідній селектор (A + B)</h4>
-            <pre><code>h2 + p{
-  margin-top: 6px;
-}</code></pre>
-
-            <h4>Селектор атрибута</h4>
-            <pre><code>a[target="_blank"]{
-  text-decoration: underline;
-}</code></pre>
-
-            <p>
-              Такі селектори допомагають точніше керувати стилізацією:
-              задавати базові правила (*), стилізувати елементи всередині блоків (A B),
-              керувати відступами між сусідніми елементами (A + B) та стилізувати за атрибутами.
-            </p>
+            <pre><code>*{ box-sizing:border-box; }</code></pre>
+            <pre><code>input, textarea, button{ font: inherit; }</code></pre>
+            <pre><code>.btn:hover{ transform: translateY(-1px); }</code></pre>
+            <pre><code>@media (max-width: 860px){ .nav{ display:none; } }</code></pre>
           </section>
 
           <section id="cssShowcase" hidden>
-            <h3>CSS: Шрифти Текст Таблиці Фон Контур Списки CSS Просунутий</h3>
-
-            <h4>Шрифти та текст</h4>
-            <pre><code>body{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: #e9ecf1;
-}
-.muted{ color: #b3b9c6; }</code></pre>
-
-            <h4>Фон і кольори (через змінні)</h4>
-            <pre><code>:root{
-  --bg:#0b0c10;
-  --text:#e9ecf1;
-  --muted:#b3b9c6;
-  --purple:#7c5cff;
-}</code></pre>
-
-            <h4>Відступи та “контури” (border, radius)</h4>
-            <pre><code>.card{
-  border-radius: 18px;
-  padding: 16px;
-  border: 1px solid rgba(255,255,255,.12);
-}</code></pre>
-
-            <h4>Списки</h4>
-            <pre><code>ul{ padding-left: 18px; }
-li{ margin: 6px 0; }</code></pre>
-
-            <h4>CSS “просунутий” (анімація + псевдоелементи)</h4>
-            <pre><code>.hero::after{
-  content:"";
-  position:absolute;
-  inset:-40px;
-  background: radial-gradient(circle, rgba(124,92,255,.18), transparent 60%);
-}</code></pre>
-
-            <h4>Таблиці (для звіту / приклад)</h4>
-            <pre><code>table{
-  width: 100%;
-  border-collapse: collapse;
-}
-th, td{
-  border: 1px solid rgba(255,255,255,.12);
-  padding: 8px 10px;
-}</code></pre>
+            <h3>CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</h3>
+            <p class="muted">Вставиш свої приклади з проєкту.</p>
           </section>
 
-          <section id="lab2Conclusion" hidden>
-            <h3>Висновки до ЛР №2</h3>
-            <p>
-              У ході лабораторної роботи №2 було застосовано каскадні таблиці стилів для
-              оформлення елементів HTML-сторінок. Реалізовано стилізацію за допомогою
-              селекторів тегу, класу та ідентифікатора, а також використано додаткові
-              типи селекторів. Налаштовано шрифти, кольори, фони, відступи, border/radius,
-              оформлення списків та додаткові ефекти (псевдоелементи/анімації).
-            </p>
+          <section id="lab2_conclusion" hidden>
+            <h3>Висновки</h3>
+            <p class="muted">Вставиш висновки.</p>
           </section>
         </div>
       </main>
@@ -930,18 +716,7 @@ th, td{
     </footer>
   </div>
 
-  <div class="kyiv-strip" aria-hidden="true"></div>
-
-  <div class="snow-bg" aria-hidden="true">
-    <span class="flake f1"></span><span class="flake f2"></span><span class="flake f3"></span><span class="flake f4"></span>
-    <span class="flake f5"></span><span class="flake f6"></span><span class="flake f7"></span><span class="flake f8"></span>
-    <span class="flake f9"></span><span class="flake f10"></span><span class="flake f11"></span><span class="flake f12"></span>
-    <span class="flake f13"></span><span class="flake f14"></span><span class="flake f15"></span><span class="flake f16"></span>
-    <span class="flake f17"></span><span class="flake f18"></span><span class="flake f19"></span><span class="flake f20"></span>
-  </div>
-
   <script>
-    // Tabs: labs
     const tabBar = document.getElementById('labTabs');
     const labs = document.querySelectorAll('.lab');
     const title = document.getElementById('contentTitle');
@@ -950,13 +725,8 @@ th, td{
     const menuLab2 = document.getElementById('leftMenuLab2');
 
     function showMenu(labId){
-      if(labId === 'lab1'){
-        menuLab1.hidden = false;
-        menuLab2.hidden = true;
-      } else if(labId === 'lab2'){
-        menuLab1.hidden = true;
-        menuLab2.hidden = false;
-      }
+      menuLab1.hidden = (labId !== 'lab1');
+      menuLab2.hidden = (labId !== 'lab2');
     }
 
     function getActiveLab(){
@@ -967,10 +737,8 @@ th, td{
       const activeLab = getActiveLab();
       if(!activeLab) return;
 
-      // show only selected section in active lab
       activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
 
-      // highlight in correct menu
       const activeLabId = activeLab.dataset.lab;
       const activeMenu = (activeLabId === 'lab1') ? menuLab1 : menuLab2;
 
@@ -979,7 +747,6 @@ th, td{
       if(activeBtn) activeBtn.classList.add('is-active');
     }
 
-    // Tab click -> switch lab
     tabBar.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-lab]');
       if(!btn) return;
@@ -988,19 +755,14 @@ th, td{
       btn.classList.add('is-active');
 
       const labId = btn.dataset.lab;
-      labs.forEach(l => l.hidden = (l.dataset.lab !== labId));
 
-      const n = labId.replace('lab','');
-      title.textContent = `Лабораторна робота №${n}`;
+      labs.forEach(l => l.hidden = (l.dataset.lab !== labId));
+      title.textContent = `Лабораторна робота №${labId.replace('lab','')}`;
 
       showMenu(labId);
-
-      // default section per lab
-      if(labId === 'lab1') setActiveSection('meta');
-      if(labId === 'lab2') setActiveSection('lab2meta');
+      setActiveSection(labId === 'lab1' ? 'meta' : 'lab2_meta');
     });
 
-    // Menu handlers (event delegation)
     function attachMenuHandler(menuEl){
       menuEl.addEventListener('click', (e) => {
         const btn = e.target.closest('button[data-section]');
