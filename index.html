@@ -47,9 +47,6 @@
     a{ color:inherit; }
     a:hover{ text-decoration: underline; }
 
-    /* =========================
-       PAGE LAYOUT (same structure)
-       ========================= */
     .page{
       max-width: 1100px;
       margin: 18px auto;
@@ -262,6 +259,11 @@
       font-size: 16px;
       color: rgba(233,236,241,.96);
     }
+    section h4{
+      margin: 10px 0 8px;
+      font-size: 14px;
+      color: rgba(233,236,241,.92);
+    }
 
     section p, section li{
       font-size: 14px;
@@ -271,7 +273,6 @@
 
     .muted{ color: var(--muted); }
 
-    /* code blocks */
     code, pre{
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
       font-size: 13px;
@@ -285,6 +286,15 @@
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
     }
     pre code{ color: rgba(233,236,241,.95); }
+
+    /* Images inside report */
+    .shot{
+      max-width:100%;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      margin-top:10px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    }
 
     /* =========================
        DEMO "MealPrep Buddy hero" inside report (content unchanged)
@@ -409,7 +419,7 @@
       text-align:center;
     }
 
-    /* keep decorative elements but make them subtle for dark theme */
+    /* Decorative */
     .kyiv-strip{
       position: fixed;
       bottom: 0;
@@ -524,7 +534,7 @@
 
     <div class="layout">
       <aside>
-        <!-- MENU: LAB 1 (ALL buttons kept) -->
+        <!-- MENU: LAB 1 -->
         <div class="menu" id="leftMenuLab1">
           <button class="is-active wide" data-section="meta">Тема, мета, посилання</button>
           <button class="wide" data-section="logic">Опис предметного середовища<br>та бізнес-логіки</button>
@@ -540,14 +550,18 @@
           <button class="wide" data-section="homeCode">Код головної сторінки (MealPrep Buddy)</button>
         </div>
 
-        <!-- MENU: LAB 2 -->
+        <!-- MENU: LAB 2 (selectors buttons restored + content present) -->
         <div class="menu" id="leftMenuLab2" hidden>
-          <button class="is-active wide" data-section="lab2_meta">Тема, мета, посилання</button>
-          <button class="wide" data-section="lab2_task">Постановка задачі</button>
-          <button class="wide" data-section="lab2_solution">Реалізація (опис)</button>
-          <button class="indent" data-section="lab2_code">HTML/CSS/JS код</button>
-          <button class="indent" data-section="lab2_screens">Скріншоти</button>
-          <button class="wide" data-section="lab2_conclusion">Висновки</button>
+          <button class="is-active wide" data-section="lab2meta">Тема, мета, посилання (ЛР2)</button>
+          <button class="wide" data-section="cssConnect">Способи підключення стилів</button>
+
+          <button class="wide" data-section="tagSelectors">Селектори тегу</button>
+          <button class="wide" data-section="classSelectors">Селектори класу</button>
+          <button class="wide" data-section="idSelectors">Селектори ідентифікаторів</button>
+          <button class="wide" data-section="otherSelectors">Інші селектори</button>
+
+          <button class="wide" data-section="cssShowcase">CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</button>
+          <button class="wide" data-section="lab2Conclusion">Висновки ЛР2</button>
         </div>
       </aside>
 
@@ -717,34 +731,195 @@
 
         <!-- ===================== LAB 2 ===================== -->
         <div class="lab" data-lab="lab2" hidden>
-          <section id="lab2_meta">
-            <h3>Лабораторна робота №2 — Тема, мета, посилання</h3>
-            <p class="muted">Сюди ти вставиш текст для ЛР2 (ти казала, що додаси контент наступним кроком).</p>
+          <section id="lab2meta">
+            <h3>Тема ЛР №2</h3>
+            <p>
+              Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів.
+              Селектори тегу, класу, ідентифікатора.
+            </p>
+
+            <h3>Мета ЛР №2</h3>
+            <p>
+              Набути практичних навичок роботи з CSS: селекторами тегу/класу/id, властивостями
+              тексту, шрифтів, фону, контурів, відступів, списків та базовими прийомами
+              стилізації сторінок у власному WEB-застосунку.
+            </p>
+
+            <h3>Місце розташування сайту та звіту</h3>
+            <ul>
+              <li>Репозиторій WEB-застосунку: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
+              <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
+              <li>Репозиторій звіту: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
+              <li>Жива сторінка звіту: <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
+            </ul>
           </section>
 
-          <section id="lab2_task" hidden>
-            <h3>Постановка задачі</h3>
-            <p class="muted">Опиши умову лабораторної роботи №2.</p>
+          <section id="cssConnect" hidden>
+            <h3>Способи підключення стилів</h3>
+
+            <h4>1) Зовнішній CSS-файл</h4>
+            <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+            <h4>2) Внутрішні стилі (приклад)</h4>
+            <pre><code>&lt;style&gt;
+body{ font-family: Arial, sans-serif; }
+&lt;/style&gt;</code></pre>
+
+            <h4>3) Інлайн-стиль (приклад)</h4>
+            <pre><code>&lt;h1 style="color:#7c5cff;"&gt;Приклад&lt;/h1&gt;</code></pre>
+
+            <p>
+              Основним способом зазвичай є підключення зовнішнього CSS-файлу,
+              оскільки це забезпечує централізоване керування стилями та зручність підтримки.
+            </p>
           </section>
 
-          <section id="lab2_solution" hidden>
-            <h3>Реалізація (опис)</h3>
-            <p class="muted">Опиши, що зробила і як працює рішення.</p>
+          <section id="tagSelectors" hidden>
+            <h3>Селектори тегу</h3>
+
+            <h4>HTML (фрагмент)</h4>
+            <pre><code>&lt;body&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;main&gt;...&lt;/main&gt;
+&lt;/body&gt;</code></pre>
+
+            <h4>CSS (приклад)</h4>
+            <pre><code>body{
+  margin: 0;
+  background: #0b0c10;
+  color: #e9ecf1;
+}</code></pre>
+
+            <img class="shot" src="images/lab2_tagselector.png" alt="Селектор тегу (скріншот)">
+            <p class="muted">Якщо у тебе інша назва скріншоту — просто заміни шлях у <code>src</code>.</p>
           </section>
 
-          <section id="lab2_code" hidden>
-            <h3>HTML/CSS/JS код</h3>
-            <p class="muted">Сюди вставиш фрагменти коду.</p>
+          <section id="classSelectors" hidden>
+            <h3>Селектори класу</h3>
+
+            <h4>HTML (фрагмент)</h4>
+            <pre><code>&lt;div class="card"&gt;...&lt;/div&gt;</code></pre>
+
+            <h4>CSS (приклад)</h4>
+            <pre><code>.card{
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  background: rgba(18,20,28,.70);
+}</code></pre>
+
+            <img class="shot" src="images/lab2_classselector.png" alt="Селектор класу (скріншот)">
           </section>
 
-          <section id="lab2_screens" hidden>
-            <h3>Скріншоти</h3>
-            <p class="muted">Сюди додаси скріншоти результату.</p>
+          <section id="idSelectors" hidden>
+            <h3>Селектори ідентифікаторів</h3>
+
+            <h4>HTML (фрагмент)</h4>
+            <pre><code>&lt;div id="museumStrip" class="museum-strip"&gt;
+  ...
+&lt;/div&gt;</code></pre>
+
+            <h4>CSS (приклад використання #id)</h4>
+            <pre><code>#museumStrip{
+  display: flex;
+  gap: 28px;
+  transition: transform 1.2s ease-in-out;
+}</code></pre>
+
+            <p>
+              Ідентифікатор використовується для звернення до конкретного елемента сторінки.
+              Його зручно застосовувати, коли елемент на сторінці унікальний.
+            </p>
+
+            <img class="shot" src="images/lab2_idselector.png" alt="Селектор id (скріншот)">
           </section>
 
-          <section id="lab2_conclusion" hidden>
-            <h3>Висновки</h3>
-            <p class="muted">Коротко: що вивчила і що вийшло.</p>
+          <section id="otherSelectors" hidden>
+            <h3>Інші селектори</h3>
+
+            <h4>Універсальний селектор *</h4>
+            <pre><code>*{ box-sizing: border-box; }</code></pre>
+
+            <h4>Дочірній селектор (A B)</h4>
+            <pre><code>.header__logo img{
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}</code></pre>
+
+            <h4>Сусідній селектор (A + B)</h4>
+            <pre><code>h2 + p{
+  margin-top: 6px;
+}</code></pre>
+
+            <h4>Селектор атрибута</h4>
+            <pre><code>a[target="_blank"]{
+  text-decoration: underline;
+}</code></pre>
+
+            <p>
+              Такі селектори допомагають точніше керувати стилізацією:
+              задавати базові правила (*), стилізувати елементи всередині блоків (A B),
+              керувати відступами між сусідніми елементами (A + B) та стилізувати за атрибутами.
+            </p>
+          </section>
+
+          <section id="cssShowcase" hidden>
+            <h3>CSS: Шрифти Текст Таблиці Фон Контур Списки CSS Просунутий</h3>
+
+            <h4>Шрифти та текст</h4>
+            <pre><code>body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #e9ecf1;
+}
+.muted{ color: #b3b9c6; }</code></pre>
+
+            <h4>Фон і кольори (через змінні)</h4>
+            <pre><code>:root{
+  --bg:#0b0c10;
+  --text:#e9ecf1;
+  --muted:#b3b9c6;
+  --purple:#7c5cff;
+}</code></pre>
+
+            <h4>Відступи та “контури” (border, radius)</h4>
+            <pre><code>.card{
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+}</code></pre>
+
+            <h4>Списки</h4>
+            <pre><code>ul{ padding-left: 18px; }
+li{ margin: 6px 0; }</code></pre>
+
+            <h4>CSS “просунутий” (анімація + псевдоелементи)</h4>
+            <pre><code>.hero::after{
+  content:"";
+  position:absolute;
+  inset:-40px;
+  background: radial-gradient(circle, rgba(124,92,255,.18), transparent 60%);
+}</code></pre>
+
+            <h4>Таблиці (для звіту / приклад)</h4>
+            <pre><code>table{
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td{
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 8px 10px;
+}</code></pre>
+          </section>
+
+          <section id="lab2Conclusion" hidden>
+            <h3>Висновки до ЛР №2</h3>
+            <p>
+              У ході лабораторної роботи №2 було застосовано каскадні таблиці стилів для
+              оформлення елементів HTML-сторінок. Реалізовано стилізацію за допомогою
+              селекторів тегу, класу та ідентифікатора, а також використано додаткові
+              типи селекторів. Налаштовано шрифти, кольори, фони, відступи, border/radius,
+              оформлення списків та додаткові ефекти (псевдоелементи/анімації).
+            </p>
           </section>
         </div>
       </main>
@@ -793,8 +968,7 @@
       if(!activeLab) return;
 
       // show only selected section in active lab
-      const sections = activeLab.querySelectorAll('section');
-      sections.forEach(s => s.hidden = (s.id !== sectionId));
+      activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
 
       // highlight in correct menu
       const activeLabId = activeLab.dataset.lab;
@@ -823,7 +997,7 @@
 
       // default section per lab
       if(labId === 'lab1') setActiveSection('meta');
-      if(labId === 'lab2') setActiveSection('lab2_meta');
+      if(labId === 'lab2') setActiveSection('lab2meta');
     });
 
     // Menu handlers (event delegation)
