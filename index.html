@@ -10,249 +10,742 @@
   <link href="https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
+    /* =========================
+       BLACK + PURPLE THEME ONLY
+       (content/structure unchanged)
+       ========================= */
+
     :root{
       --bg:#0b0c10;
       --card:#12141c;
+      --alt:#0f1118;
       --text:#e9ecf1;
       --muted:#b3b9c6;
       --line:rgba(255,255,255,.12);
 
       --purple:#7c5cff;
-      --purple-soft:#a855f7;
+      --purple2:#a855f7;
 
-      /* NEW: color for LAB buttons */
-      --lab:#22d3ee;
-      --lab-soft:#38bdf8;
+      /* NEW: distinct color for LAB tabs */
+      --labA:#22d3ee;   /* cyan */
+      --labB:#38bdf8;   /* sky */
+      --labLine:rgba(56,189,248,.55);
+
+      --radius:18px;
     }
 
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
     body{
       margin:0;
-      font-family:'Bona Nova', serif;
+      font-family: 'Bona Nova', serif;
+      color: var(--text);
+      min-height: 100vh;
+
       background:
         radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.18), transparent 55%),
         radial-gradient(1100px 700px at 85% 5%, rgba(168,85,247,.14), transparent 55%),
         var(--bg);
-      color:var(--text);
+      line-height:1.55;
+      position: relative;
     }
 
+    /* Page */
     .page{
-      max-width:1100px;
-      margin:18px auto;
-      padding:14px 16px 20px;
+      max-width: 1100px;
+      margin: 18px auto;
+      padding: 14px 16px 20px;
+      border: 2px solid transparent;
+      position: relative;
+      z-index: 2;
     }
 
-    /* HEADER */
     header{
-      text-align:center;
-      margin-bottom:14px;
+      display: grid;
+      grid-template-columns: 1fr; /* UPDATED (logos/photo removed) */
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .title{
+      text-align:center; /* keep centered */
+      line-height:1.2;
     }
     .title h1{
       margin:0;
-      font-size:20px;
-      text-transform:uppercase;
-      color:#c084fc;
-      text-shadow:0 0 6px rgba(192,132,252,.6);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #c084fc;
+      text-shadow:
+        0 0 6px rgba(192,132,252,.65),
+        0 0 16px rgba(168,85,247,.35);
     }
     .title h2{
       margin:6px 0 0;
-      font-size:16px;
-      color:#e9d5ff;
+      font-size: 16px;
+      font-weight: 700;
+      color: #e9d5ff;
+      opacity: .95;
     }
     .title p{
       margin:8px 0 0;
-      font-size:14px;
-      color:var(--muted);
+      font-size: 14px;
+      color: var(--muted);
     }
 
-    /* LAB TABS */
+    /* Tabs */
     .tabs{
       display:flex;
-      gap:10px;
-      justify-content:flex-start; /* LEFT */
-      margin:12px 0 16px;
-      padding:0;
+      gap: 10px;
+      width: 100%;
+      flex-wrap:wrap;
+      justify-content:flex-start; /* ✅ left */
+      align-items: stretch;
+      margin: 8px 0 14px;
+      padding: 0;
       list-style:none;
     }
 
+    /* ✅ Make LAB buttons same size as menu buttons + different color */
     .tabs button{
-      /* SAME SIZE AS MENU BUTTONS */
-      padding:12px 14px;
-      font-size:14px;
-      font-family:inherit;
-      font-weight:700;
+      border: 1px solid var(--labLine);
+      background: linear-gradient(135deg, rgba(34,211,238,.22), rgba(56,189,248,.12));
+      border-radius: 14px;
 
-      border-radius:14px;
+      padding: 12px 14px;  /* same as menu */
       cursor:pointer;
 
-      color:#ecfeff;
-      background:linear-gradient(135deg, var(--lab), var(--lab-soft));
-      border:1px solid rgba(34,211,238,.7);
-
-      box-shadow:
-        0 0 14px rgba(34,211,238,.35),
-        0 12px 30px rgba(0,0,0,.35);
-
-      transition:.15s ease;
+      font-size: 14px;     /* same as menu */
+      text-align:center;
+      font-family: 'Bona Nova', serif;
+      color: var(--text);
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      transition: transform .06s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+      min-width: 240px;    /* keep them consistent */
     }
 
     .tabs button:hover{
-      transform:translateY(-1px);
+      background: linear-gradient(135deg, rgba(34,211,238,.32), rgba(56,189,248,.18));
+      border-color: rgba(56,189,248,.85);
       box-shadow:
-        0 0 22px rgba(34,211,238,.6),
-        0 14px 36px rgba(0,0,0,.4);
+        0 0 16px rgba(56,189,248,.22),
+        0 18px 40px rgba(0,0,0,.28);
+      transform: translateY(-1px);
     }
+
+    .tabs button:active{ transform: translateY(0px); }
 
     .tabs button.is-active{
-      background:linear-gradient(135deg, #0ea5e9, #38bdf8);
+      background: linear-gradient(135deg, rgba(34,211,238,.45), rgba(56,189,248,.22));
+      border-color: rgba(56,189,248,.95);
+      font-weight: 700;
+      color: #fff;
       box-shadow:
-        0 0 26px rgba(56,189,248,.9),
-        0 16px 40px rgba(0,0,0,.45);
+        0 0 18px rgba(56,189,248,.30),
+        0 18px 40px rgba(0,0,0,.30);
+      outline: none;
     }
 
-    /* LAYOUT */
     .layout{
       display:grid;
-      grid-template-columns:300px 1fr;
-      gap:16px;
+      grid-template-columns: 300px 1fr;
+      gap: 16px;
+      align-items:start;
     }
+    aside{ padding-top: 4px; }
 
-    /* LEFT MENU */
+    /* Left menus */
     .menu{
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap: 10px;
     }
     .menu button{
-      padding:12px 14px;
-      font-size:14px;
-      font-family:inherit;
-      text-align:center;
-      border-radius:14px;
+      border: 1px solid rgba(124,92,255,.35);
+      background: rgba(18,20,28,.70);
+      border-radius: 14px;
+      padding: 12px 14px;
       cursor:pointer;
-
-      color:var(--text);
-      background:rgba(18,20,28,.7);
-      border:1px solid rgba(124,92,255,.35);
-
-      box-shadow:0 18px 40px rgba(0,0,0,.25);
+      font-size: 14px;
+      text-align:center;
+      font-family: 'Bona Nova', serif;
+      color: var(--text);
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      transition: transform .06s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
     }
+    .menu button:hover{
+      background: rgba(124,92,255,.12);
+      border-color: rgba(124,92,255,.55);
+      box-shadow:
+        0 0 16px rgba(124,92,255,.18),
+        0 18px 40px rgba(0,0,0,.28);
+      transform: translateY(-1px);
+    }
+    .menu button:active{ transform: translateY(0px); }
     .menu button.is-active{
-      background:linear-gradient(135deg, rgba(124,92,255,.35), rgba(168,85,247,.18));
-      color:#fff;
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(168,85,247,.18));
+      border-color: rgba(124,92,255,.75);
+      font-weight:700;
+      color: #fff;
+      box-shadow:
+        0 0 18px rgba(124,92,255,.28),
+        0 18px 40px rgba(0,0,0,.30);
+      outline: none;
     }
-    .menu[hidden]{ display:none; }
+    .menu .indent{
+      margin-right: auto;
+      width: calc(100% - 6px);
+      text-align:center;
+      padding: 12px 14px;
+    }
+    .menu .wide{ padding: 14px 14px; }
+    .menu[hidden]{ display:none !important; }
 
-    /* MAIN */
+    /* Main content frame */
     main{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      background:rgba(18,20,28,.7);
-      min-height:520px;
+      border: 1px solid var(--line);
+      min-height: 520px;
+      padding: 18px;
+      position:relative;
+      background: rgba(18,20,28,.68);
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
     }
-
     .content-title{
       text-align:center;
-      font-size:18px;
-      color:#c084fc;
-      margin-bottom:6px;
+      margin: 0 0 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #c084fc;
+      text-shadow:
+        0 0 6px rgba(192,132,252,.55),
+        0 0 14px rgba(168,85,247,.35);
     }
     .hint{
       text-align:center;
-      font-size:14px;
-      color:var(--muted);
+      color: var(--muted);
+      margin: 0 0 16px;
+      font-size: 14px;
     }
 
-    section[hidden]{ display:none; }
+    section[hidden]{ display:none !important; }
+    section h3{
+      margin: 12px 0 8px;
+      font-size: 16px;
+      color: #e9d5ff;
+    }
+    section h4{
+      margin: 10px 0 8px;
+      font-size: 14px;
+      color: #f5d0fe;
+      opacity: .95;
+    }
+    section p, section li{
+      font-size: 14px;
+      line-height:1.35;
+      color: var(--text);
+    }
+    .muted{ color: var(--muted); }
 
+    a{ color: inherit; text-decoration: underline; text-decoration-color: rgba(124,92,255,.5); }
+    a:hover{ text-decoration-color: rgba(124,92,255,.95); }
+
+    code, pre{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+    }
+    pre{
+      border: 1px solid rgba(124,92,255,.22);
+      padding: 10px;
+      overflow:auto;
+      background: rgba(15,17,24,.85);
+      border-radius: 14px;
+      color: #f8fafc;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+    code{ color: #f0abfc; }
+
+    /* Demo "MealPrep Buddy hero" inside report — same layout, dark neon style */
+    .home-wrap{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+      align-items: stretch;
+      margin-top: 10px;
+    }
+    .home-card{
+      background: radial-gradient(circle at top left,
+        rgba(236,72,153,.22),
+        rgba(168,85,247,.18) 60%,
+        rgba(18,20,28,.88)
+      );
+      border: 1px solid rgba(236,72,153,.35);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow:
+        0 0 12px rgba(236,72,153,.25),
+        0 0 28px rgba(168,85,247,.20),
+        0 18px 40px rgba(0,0,0,.35);
+      color: #fdf4ff;
+    }
+    .home-title{
+      margin: 0 0 8px 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: #c084fc;
+      text-shadow:
+        0 0 6px rgba(192,132,252,.55),
+        0 0 14px rgba(168,85,247,.35);
+    }
+    .home-sub{
+      margin: 0 0 12px 0;
+      color: #f5d0fe;
+      opacity: .95;
+    }
+    .home-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    /* Purple unified button look */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+
+      padding: 12px 16px;
+      border-radius: 999px;
+
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 13px;
+      line-height: 1;
+
+      color:#fff;
+      text-decoration:none;
+
+      border: 1px solid rgba(124,92,255,.55);
+      background: linear-gradient(135deg, var(--purple), rgba(124,92,255,.85));
+      box-shadow: 0 10px 24px rgba(124,92,255,.28);
+      transition: transform .06s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .btn:hover{
+      text-decoration:none;
+      background: linear-gradient(135deg, #6f4eff, rgba(124,92,255,.95));
+      box-shadow: 0 14px 30px rgba(124,92,255,.38);
+      transform: translateY(-1px);
+    }
+    .btn:active{ transform: translateY(0px); }
+
+    .home-badges{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .badge{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(236,72,153,.40);
+      background: rgba(236,72,153,.12);
+      color: #fdf4ff;
+      box-shadow: 0 0 10px rgba(236,72,153,.18);
+    }
+
+    .home-features{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    .feature{
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      font-size: 13px;
+      color: #fdf4ff;
+    }
+    .feature strong{ display:block; margin-bottom: 4px; color:#f0abfc; }
+
+    .home-photo{
+      background: rgba(18,20,28,.70);
+      border: 1px solid rgba(124,92,255,.28);
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      overflow:hidden;
+      position:relative;
+      min-height: 260px;
+    }
+    .home-photo img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      opacity: .92;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .home-photo img:hover{ opacity: 1; transform: scale(1.02); }
+
+    /* Footer kept (unchanged) */
     footer{
-      margin-top:14px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
       text-align:center;
-      font-size:12px;
-      color:var(--muted);
     }
 
-    @media(max-width:900px){
-      .layout{ grid-template-columns:1fr; }
+    @media (max-width: 900px){
+      header{ grid-template-columns: 1fr; }
+      .layout{ grid-template-columns: 1fr; }
+      .tabs{ justify-content:flex-start; }
+      .home-wrap{ grid-template-columns: 1fr; }
+      .home-features{ grid-template-columns: 1fr; }
+      .tabs button{ min-width: unset; width: fit-content; }
     }
   </style>
 </head>
 
 <body>
-<div class="page">
+  <div class="page">
+    <header>
+      <!-- Logos + photo REMOVED, centered title kept -->
+      <div class="title">
+        <h1>ZPI-51_appWEB-BilousKateryna-FIOT-2025</h1>
+        <h2>з дисципліни «Проєктування WEB-застосунків»</h2>
+        <p>
+          <strong>Виконавець:</strong> студентка групи ЗПІ-зп-51<br>
+          <strong>ПІБ:</strong> Білоус Катерина
+        </p>
+      </div>
+    </header>
 
-  <header>
-    <div class="title">
-      <h1>ZPI-51_appWEB-BilousKateryna-FIOT-2025</h1>
-      <h2>з дисципліни «Проєктування WEB-застосунків»</h2>
-      <p>
-        <strong>Виконавець:</strong> студентка групи ЗПІ-зп-51<br>
-        <strong>ПІБ:</strong> Білоус Катерина
-      </p>
+    <nav aria-label="Вкладки лабораторних робіт">
+      <ul class="tabs" id="labTabs">
+        <li><button class="is-active" data-lab="lab1">Лабораторна робота №1</button></li>
+        <li><button data-lab="lab2">Лабораторна робота №2</button></li>
+      </ul>
+    </nav>
+
+    <div class="layout">
+      <aside>
+        <!-- ✅ Lab 1 menu shows ONLY on lab1 -->
+        <div class="menu" id="leftMenuLab1">
+          <button class="is-active wide" data-section="meta">Тема, мета, посилання</button>
+          <button class="wide" data-section="logic">Опис предметного середовища<br>та бізнес-логіки</button>
+          <button class="wide" data-section="structure">Структура документа</button>
+
+          <button class="indent" data-section="table">HTML-код ТАБЛИЦІ</button>
+          <button class="indent" data-section="image">HTML-код ЗОБРАЖЕННЯ</button>
+          <button class="indent" data-section="list">HTML-код СПИСКІВ</button>
+          <button class="indent" data-section="form">HTML-код ФОРМИ</button>
+          <button class="indent" data-section="html">HTML-код (фрагмент)</button>
+
+          <button class="wide" data-section="homePage">Головна сторінка (MealPrep Buddy)</button>
+          <button class="wide" data-section="homeCode">Код головної сторінки (MealPrep Buddy)</button>
+        </div>
+
+        <!-- ✅ Lab 2 menu hidden until lab2 selected -->
+        <div class="menu" id="leftMenuLab2" hidden>
+          <button class="is-active wide" data-section="lab2_meta">Тема, мета, посилання</button>
+          <button class="wide" data-section="cssConnect">Способи підключення стилів</button>
+
+          <button class="wide" data-section="tagSelectors">Селектори тегу</button>
+          <button class="wide" data-section="classSelectors">Селектори класу</button>
+          <button class="wide" data-section="idSelectors">Селектори ідентифікаторів</button>
+          <button class="wide" data-section="otherSelectors">Інші селектори</button>
+
+          <button class="wide" data-section="cssShowcase">CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</button>
+          <button class="wide" data-section="lab2_conclusion">Висновки</button>
+        </div>
+      </aside>
+
+      <main aria-label="Місце виведення інформації">
+        <h3 class="content-title" id="contentTitle">Лабораторна робота №1</h3>
+        <p class="hint" id="contentHint">Оберіть розділ зліва, щоб переглянути матеріали.</p>
+
+        <!-- ===================== LAB 1 ===================== -->
+        <div class="lab" data-lab="lab1">
+          <section id="meta">
+            <h3>Тема, мета, посилання</h3>
+            <p><strong>Тема:</strong> Теги та атрибути HTML-документа. Семантична розмітка. Git/GitHub. Робота з репозиторіями. Опис логіки власного WEB-застосунку.</p>
+            <p><strong>Мета:</strong> навчитися працювати з GitHub та HTML-структурою (таблиці, зображення, посилання, списки, форми) і створити шаблон звітного HTML-документа для всіх лабораторних робіт.</p>
+
+            <h3>Посилання (встав свої)</h3>
+            <ul>
+              <li>Репозиторій WEB-застосунку: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
+              <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
+              <li>Репозиторій звіту: <a href="#" target="_blank" rel="noreferrer">https://github.com/...</a></li>
+              <li>Жива сторінка звіту: <a href="#" target="_blank" rel="noreferrer">https://...github.io/...</a></li>
+            </ul>
+            <p class="muted">Заміни “#” на реальні посилання.</p>
+          </section>
+
+          <section id="logic" hidden>
+            <h3>Опис предметного середовища та бізнес-логіки</h3>
+            <p><strong>MealPrep Buddy</strong> — вебзастосунок для планування харчування на тиждень і автоматичного формування інгредієнтів та списку покупок.</p>
+
+            <h3>Функціональні вимоги</h3>
+            <ul>
+              <li>Вибір страв на кожен день (обід/вечеря).</li>
+              <li>Автоматичний підрахунок інгредієнтів на тиждень.</li>
+              <li>Формування списку покупок.</li>
+              <li>Відмітка «вже є» і очищення позначок.</li>
+              <li>Надсилання списку на email (mailto).</li>
+              <li>Збереження даних у <code>localStorage</code>.</li>
+            </ul>
+          </section>
+
+          <section id="structure" hidden>
+            <h3>Структура документа (семантична верстка)</h3>
+            <pre><code>&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;...&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+          </section>
+
+          <section id="table" hidden>
+            <h3>HTML-код таблиці (приклад)</h3>
+            <pre><code>&lt;table&gt;
+  &lt;caption&gt;План харчування на тиждень&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;День&lt;/th&gt;&lt;th&gt;Обід&lt;/th&gt;&lt;th&gt;Вечеря&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Пн&lt;/td&gt;&lt;td&gt;Салат&lt;/td&gt;&lt;td&gt;Паста&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+          </section>
+
+          <section id="image" hidden>
+            <h3>HTML-код зображення (приклад)</h3>
+            <pre><code>&lt;img src="images/hero.jpg" alt="Їжа та планування покупок"&gt;</code></pre>
+          </section>
+
+          <section id="list" hidden>
+            <h3>HTML-код списків (приклад)</h3>
+            <pre><code>&lt;ul&gt;
+  &lt;li&gt;Тунець&lt;/li&gt;
+  &lt;li&gt;Огірок&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Обрати страви&lt;/li&gt;
+  &lt;li&gt;Сформувати список&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+          </section>
+
+          <section id="form" hidden>
+            <h3>HTML-код форми (приклад)</h3>
+            <pre><code>&lt;form action="#" method="post"&gt;
+  &lt;label&gt;Email:
+    &lt;input type="email" name="email" required&gt;
+  &lt;/label&gt;
+  &lt;button type="submit"&gt;Надіслати&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </section>
+
+          <section id="html" hidden>
+            <h3>HTML-код (фрагмент)</h3>
+            <pre><code>&lt;header&gt;
+  &lt;h1&gt;MealPrep Buddy&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="index.html"&gt;Головна&lt;/a&gt;
+    &lt;a href="planner.html"&gt;План тижня&lt;/a&gt;
+    &lt;a href="shopping.html"&gt;Список покупок&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+          </section>
+
+          <section id="homePage" hidden>
+            <h3>Головна сторінка WEB-застосунку (приклад)</h3>
+            <div class="home-wrap" aria-label="Hero-блок MealPrep Buddy">
+              <div class="home-card">
+                <div class="home-title">Плануй харчування на тиждень легко</div>
+                <p class="home-sub">
+                  Обери страви на кожен день — а ми автоматично сформуємо інгредієнти та список покупок.
+                </p>
+
+                <div class="home-actions">
+                  <a class="btn" href="#">🍽️ Почати планування</a>
+                  <a class="btn" href="#">🛒 До списку покупок</a>
+                </div>
+
+                <div class="home-badges">
+                  <span class="badge">✅ Автозбереження</span>
+                  <span class="badge">📦 Інгредієнти на тиждень</span>
+                  <span class="badge">✉️ Надсилання на email</span>
+                </div>
+
+                <div class="home-features">
+                  <div class="feature">
+                    <strong>1) Обери страви</strong>
+                    План на обід і вечерю.
+                  </div>
+                  <div class="feature">
+                    <strong>2) Отримай інгредієнти</strong>
+                    Підрахунок позицій.
+                  </div>
+                  <div class="feature">
+                    <strong>3) Купуй зручно</strong>
+                    Позначай «вже є».
+                  </div>
+                </div>
+              </div>
+
+              <div class="home-photo">
+                <img src="images/hero.jpg" alt="Їжа та планування покупок">
+              </div>
+            </div>
+          </section>
+
+          <section id="homeCode" hidden>
+            <h3>Код головної сторінки WEB-застосунку (фрагмент)</h3>
+            <pre><code>&lt;section class="hero"&gt;
+  &lt;h1&gt;Плануй харчування на тиждень легко&lt;/h1&gt;
+  &lt;p&gt;Обери страви на кожен день — а ми сформуємо список покупок.&lt;/p&gt;
+
+  &lt;div class="hero-actions"&gt;
+    &lt;a class="btn" href="planner.html"&gt;🍽️ Почати планування&lt;/a&gt;
+    &lt;a class="btn" href="shopping.html"&gt;🛒 До списку покупок&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </section>
+        </div>
+
+        <!-- ===================== LAB 2 ===================== -->
+        <div class="lab" data-lab="lab2" hidden>
+
+          <section id="lab2_meta">
+            <h3>Лабораторна робота №2 — Тема, мета, посилання</h3>
+            <p><strong>Тема:</strong> Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів. Селектори тегу, класу, ідентифікатора.</p>
+            <p><strong>Мета:</strong> набути практичних навичок роботи з CSS: підключення стилів, селектори (tag/class/id/інші), оформлення тексту, фону, контурів, списків та адаптивність.</p>
+          </section>
+
+          <section id="cssConnect" hidden>
+            <h3>Способи підключення стилів</h3>
+            <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+            <pre><code>&lt;style&gt;
+body{ margin:0; }
+&lt;/style&gt;</code></pre>
+            <pre><code>&lt;h1 style="color:#7c5cff;"&gt;MealPrep Buddy&lt;/h1&gt;</code></pre>
+          </section>
+
+          <section id="tagSelectors" hidden>
+            <h3>Селектори тегу</h3>
+            <pre><code>body{ margin:0; }
+a{ text-decoration:none; }
+h1{ font-size: 44px; }</code></pre>
+          </section>
+
+          <section id="classSelectors" hidden>
+            <h3>Селектори класу</h3>
+            <pre><code>.card{ border-radius:18px; }
+.btn{ border-radius:999px; }</code></pre>
+          </section>
+
+          <section id="idSelectors" hidden>
+            <h3>Селектори ідентифікаторів</h3>
+            <pre><code>#plannerGrid{ position: relative; }
+#shoppingList div{ color: #ffd8a8; }</code></pre>
+          </section>
+
+          <section id="otherSelectors" hidden>
+            <h3>Інші селектори</h3>
+            <pre><code>*{ box-sizing:border-box; }</code></pre>
+            <pre><code>input, textarea, button{ font: inherit; }</code></pre>
+            <pre><code>.btn:hover{ transform: translateY(-1px); }</code></pre>
+            <pre><code>@media (max-width: 860px){ .nav{ display:none; } }</code></pre>
+          </section>
+
+          <section id="cssShowcase" hidden>
+            <h3>CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</h3>
+            <p class="muted">Вставиш свої приклади з проєкту.</p>
+          </section>
+
+          <section id="lab2_conclusion" hidden>
+            <h3>Висновки</h3>
+            <p class="muted">Вставиш висновки.</p>
+          </section>
+        </div>
+      </main>
     </div>
-  </header>
 
-  <!-- LAB BUTTONS -->
-  <nav>
-    <ul class="tabs" id="labTabs">
-      <li><button class="is-active" data-lab="lab1">Лабораторна робота №1</button></li>
-      <li><button data-lab="lab2">Лабораторна робота №2</button></li>
-    </ul>
-  </nav>
-
-  <div class="layout">
-    <aside>
-      <div class="menu" id="leftMenuLab1">
-        <button class="is-active" data-section="meta">Тема, мета, посилання</button>
-      </div>
-      <div class="menu" id="leftMenuLab2" hidden>
-        <button class="is-active" data-section="lab2_meta">Тема, мета, посилання</button>
-      </div>
-    </aside>
-
-    <main>
-      <h3 class="content-title" id="contentTitle">Лабораторна робота №1</h3>
-      <p class="hint">Оберіть розділ зліва</p>
-
-      <div class="lab" data-lab="lab1">
-        <section id="meta">
-          <p>Контент лабораторної №1</p>
-        </section>
-      </div>
-
-      <div class="lab" data-lab="lab2" hidden>
-        <section id="lab2_meta">
-          <p>Контент лабораторної №2</p>
-        </section>
-      </div>
-    </main>
+    <footer>
+      © Звітний HTML-документ лабораторних робіт (FIOT-2025)
+    </footer>
   </div>
 
-</div>
+  <script>
+    const tabBar = document.getElementById('labTabs');
+    const labs = document.querySelectorAll('.lab');
+    const title = document.getElementById('contentTitle');
 
-<script>
-  const tabs=document.getElementById('labTabs');
-  const labs=document.querySelectorAll('.lab');
-  const menu1=document.getElementById('leftMenuLab1');
-  const menu2=document.getElementById('leftMenuLab2');
-  const title=document.getElementById('contentTitle');
+    const menuLab1 = document.getElementById('leftMenuLab1');
+    const menuLab2 = document.getElementById('leftMenuLab2');
 
-  tabs.addEventListener('click',e=>{
-    const btn=e.target.closest('button');
-    if(!btn) return;
+    function showMenu(labId){
+      menuLab1.hidden = (labId !== 'lab1');
+      menuLab2.hidden = (labId !== 'lab2');
+    }
 
-    tabs.querySelectorAll('button').forEach(b=>b.classList.remove('is-active'));
-    btn.classList.add('is-active');
+    function getActiveLab(){
+      return [...labs].find(l => !l.hidden);
+    }
 
-    const lab=btn.dataset.lab;
-    labs.forEach(l=>l.hidden=l.dataset.lab!==lab);
+    function setActiveSection(sectionId){
+      const activeLab = getActiveLab();
+      if(!activeLab) return;
 
-    menu1.hidden=lab!=='lab1';
-    menu2.hidden=lab!=='lab2';
+      activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
 
-    title.textContent=`Лабораторна робота №${lab.replace('lab','')}`;
-  });
-</script>
+      const activeLabId = activeLab.dataset.lab;
+      const activeMenu = (activeLabId === 'lab1') ? menuLab1 : menuLab2;
+
+      activeMenu.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+      const activeBtn = activeMenu.querySelector(`button[data-section="${sectionId}"]`);
+      if(activeBtn) activeBtn.classList.add('is-active');
+    }
+
+    tabBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-lab]');
+      if(!btn) return;
+
+      tabBar.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      const labId = btn.dataset.lab;
+
+      labs.forEach(l => l.hidden = (l.dataset.lab !== labId));
+      title.textContent = `Лабораторна робота №${labId.replace('lab','')}`;
+
+      showMenu(labId);
+      setActiveSection(labId === 'lab1' ? 'meta' : 'lab2_meta');
+    });
+
+    function attachMenuHandler(menuEl){
+      menuEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-section]');
+        if(!btn) return;
+        setActiveSection(btn.dataset.section);
+      });
+    }
+    attachMenuHandler(menuLab1);
+    attachMenuHandler(menuLab2);
+
+    // init
+    showMenu('lab1');
+    setActiveSection('meta');
+  </script>
 </body>
 </html>
