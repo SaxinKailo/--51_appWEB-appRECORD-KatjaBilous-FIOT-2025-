@@ -11,8 +11,8 @@
 
   <style>
     /* =========================
-       BLACK + PURPLE THEME ONLY
-       (content/structure unchanged)
+       YOUR DARK SITE THEME (black + purple)
+       + report layout styles
        ========================= */
 
     :root{
@@ -23,13 +23,11 @@
       --muted:#b3b9c6;
       --line:rgba(255,255,255,.12);
 
-      --purple:#7c5cff;
-      --purple2:#a855f7;
+      --accent:#6ee7b7;
+      --accent2:#60a5fa;
 
-      /* NEW: distinct color for LAB tabs */
-      --labA:#22d3ee;   /* cyan */
-      --labB:#38bdf8;   /* sky */
-      --labLine:rgba(56,189,248,.55);
+      --purple:#7c5cff;
+      --danger:#fb7185;
 
       --radius:18px;
     }
@@ -40,38 +38,39 @@
     body{
       margin:0;
       font-family: 'Bona Nova', serif;
-      color: var(--text);
-      min-height: 100vh;
-
       background:
-        radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.18), transparent 55%),
-        radial-gradient(1100px 700px at 85% 5%, rgba(168,85,247,.14), transparent 55%),
+        radial-gradient(1200px 700px at 15% 10%, rgba(96,165,250,.18), transparent 55%),
+        radial-gradient(1100px 700px at 85% 5%, rgba(110,231,183,.14), transparent 55%),
         var(--bg);
+      color:var(--text);
       line-height:1.55;
-      position: relative;
+      min-height:100vh;
     }
 
-    /* Page */
+    a{ color:inherit; text-decoration:underline; text-decoration-color: rgba(124,92,255,.55); }
+    a:hover{ text-decoration-color: rgba(124,92,255,.95); }
+
     .page{
       max-width: 1100px;
       margin: 18px auto;
       padding: 14px 16px 20px;
-      border: 2px solid transparent;
       position: relative;
-      z-index: 2;
     }
 
+    /* HEADER (centered text only; logos/photo removed) */
     header{
-      display: grid;
-      grid-template-columns: 1fr; /* UPDATED (logos/photo removed) */
-      align-items: center;
-      gap: 12px;
+      display: block;
       margin-bottom: 12px;
     }
-
     .title{
-      text-align:center; /* keep centered */
+      text-align:center;
       line-height:1.2;
+      padding: 10px 12px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(18,20,28,.65);
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      backdrop-filter: blur(8px);
     }
     .title h1{
       margin:0;
@@ -96,56 +95,46 @@
       color: var(--muted);
     }
 
-    /* Tabs */
+    /* TABS */
     .tabs{
       display:flex;
       gap: 10px;
       width: 100%;
       flex-wrap:wrap;
-      justify-content:flex-start; /* ✅ left */
-      align-items: stretch;
-      margin: 8px 0 14px;
+      justify-content:flex-start; /* left */
+      margin: 12px 0 14px;
       padding: 0;
       list-style:none;
     }
 
-    /* ✅ Make LAB buttons same size as menu buttons + different color */
+    /* Make Lab1/Lab2 buttons same size as other UI buttons,
+       and different color from left menu */
     .tabs button{
-      border: 1px solid var(--labLine);
-      background: linear-gradient(135deg, rgba(34,211,238,.22), rgba(56,189,248,.12));
+      border: 1px solid rgba(96,165,250,.45);
+      background: linear-gradient(135deg, rgba(96,165,250,.18), rgba(124,92,255,.22));
       border-radius: 14px;
-
-      padding: 12px 14px;  /* same as menu */
+      padding: 12px 14px;
       cursor:pointer;
-
-      font-size: 14px;     /* same as menu */
+      font-size: 14px;
       text-align:center;
       font-family: 'Bona Nova', serif;
       color: var(--text);
       box-shadow: 0 18px 40px rgba(0,0,0,.25);
       transition: transform .06s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
-      min-width: 240px;    /* keep them consistent */
+      min-width: 240px;     /* consistent size */
     }
-
     .tabs button:hover{
-      background: linear-gradient(135deg, rgba(34,211,238,.32), rgba(56,189,248,.18));
-      border-color: rgba(56,189,248,.85);
-      box-shadow:
-        0 0 16px rgba(56,189,248,.22),
-        0 18px 40px rgba(0,0,0,.28);
+      background: linear-gradient(135deg, rgba(96,165,250,.22), rgba(124,92,255,.30));
+      border-color: rgba(96,165,250,.65);
+      box-shadow: 0 0 18px rgba(96,165,250,.18), 0 18px 40px rgba(0,0,0,.28);
       transform: translateY(-1px);
     }
-
-    .tabs button:active{ transform: translateY(0px); }
-
     .tabs button.is-active{
-      background: linear-gradient(135deg, rgba(34,211,238,.45), rgba(56,189,248,.22));
-      border-color: rgba(56,189,248,.95);
+      background: linear-gradient(135deg, rgba(124,92,255,.45), rgba(124,92,255,.20));
+      border-color: rgba(124,92,255,.80);
       font-weight: 700;
       color: #fff;
-      box-shadow:
-        0 0 18px rgba(56,189,248,.30),
-        0 18px 40px rgba(0,0,0,.30);
+      box-shadow: 0 0 18px rgba(124,92,255,.28), 0 18px 40px rgba(0,0,0,.30);
       outline: none;
     }
 
@@ -179,21 +168,16 @@
     .menu button:hover{
       background: rgba(124,92,255,.12);
       border-color: rgba(124,92,255,.55);
-      box-shadow:
-        0 0 16px rgba(124,92,255,.18),
-        0 18px 40px rgba(0,0,0,.28);
+      box-shadow: 0 0 16px rgba(124,92,255,.18), 0 18px 40px rgba(0,0,0,.28);
       transform: translateY(-1px);
     }
-    .menu button:active{ transform: translateY(0px); }
     .menu button.is-active{
-      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(168,85,247,.18));
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(124,92,255,.15));
       border-color: rgba(124,92,255,.75);
       font-weight:700;
-      color: #fff;
-      box-shadow:
-        0 0 18px rgba(124,92,255,.28),
-        0 18px 40px rgba(0,0,0,.30);
-      outline: none;
+      color:#fff;
+      box-shadow: 0 0 18px rgba(124,92,255,.28), 0 18px 40px rgba(0,0,0,.30);
+      outline:none;
     }
     .menu .indent{
       margin-right: auto;
@@ -221,9 +205,7 @@
       font-size: 18px;
       font-weight: 700;
       color: #c084fc;
-      text-shadow:
-        0 0 6px rgba(192,132,252,.55),
-        0 0 14px rgba(168,85,247,.35);
+      text-shadow: 0 0 6px rgba(192,132,252,.55), 0 0 14px rgba(168,85,247,.35);
     }
     .hint{
       text-align:center;
@@ -238,21 +220,12 @@
       font-size: 16px;
       color: #e9d5ff;
     }
-    section h4{
-      margin: 10px 0 8px;
-      font-size: 14px;
-      color: #f5d0fe;
-      opacity: .95;
-    }
     section p, section li{
       font-size: 14px;
       line-height:1.35;
       color: var(--text);
     }
     .muted{ color: var(--muted); }
-
-    a{ color: inherit; text-decoration: underline; text-decoration-color: rgba(124,92,255,.5); }
-    a:hover{ text-decoration-color: rgba(124,92,255,.95); }
 
     code, pre{
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
@@ -266,10 +239,11 @@
       border-radius: 14px;
       color: #f8fafc;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+      margin: 10px 0;
     }
     code{ color: #f0abfc; }
 
-    /* Demo "MealPrep Buddy hero" inside report — same layout, dark neon style */
+    /* Demo MealPrep Buddy block (kept) */
     .home-wrap{
       display:grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -278,34 +252,21 @@
       margin-top: 10px;
     }
     .home-card{
-      background: radial-gradient(circle at top left,
-        rgba(236,72,153,.22),
-        rgba(168,85,247,.18) 60%,
-        rgba(18,20,28,.88)
-      );
-      border: 1px solid rgba(236,72,153,.35);
+      background: rgba(18,20,28,.70);
+      border: 1px solid var(--line);
       border-radius: 18px;
       padding: 18px;
-      box-shadow:
-        0 0 12px rgba(236,72,153,.25),
-        0 0 28px rgba(168,85,247,.20),
-        0 18px 40px rgba(0,0,0,.35);
-      color: #fdf4ff;
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
     }
     .home-title{
       margin: 0 0 8px 0;
       font-size: 20px;
       font-weight: 700;
       color: #c084fc;
-      text-shadow:
-        0 0 6px rgba(192,132,252,.55),
-        0 0 14px rgba(168,85,247,.35);
+      text-shadow: 0 0 6px rgba(192,132,252,.55), 0 0 14px rgba(168,85,247,.35);
     }
-    .home-sub{
-      margin: 0 0 12px 0;
-      color: #f5d0fe;
-      opacity: .95;
-    }
+    .home-sub{ margin: 0 0 12px 0; color: var(--muted); }
+
     .home-actions{
       display:flex;
       gap: 10px;
@@ -313,36 +274,37 @@
       margin-top: 10px;
     }
 
-    /* Purple unified button look */
+    /* Your purple button */
     .btn{
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1;
+
+      border:1px solid rgba(124,92,255,.55);
+      padding:14px 22px;
+      border-radius:999px;
+      cursor:pointer;
+
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:8px;
 
-      padding: 12px 16px;
-      border-radius: 999px;
-
-      font-family: inherit;
-      font-weight: 800;
-      font-size: 13px;
-      line-height: 1;
-
-      color:#fff;
       text-decoration:none;
+      color:#fff;
 
-      border: 1px solid rgba(124,92,255,.55);
       background: linear-gradient(135deg, var(--purple), rgba(124,92,255,.85));
-      box-shadow: 0 10px 24px rgba(124,92,255,.28);
+      box-shadow: 0 10px 24px rgba(124,92,255,.35);
       transition: transform .06s ease, box-shadow .12s ease, background .12s ease;
     }
     .btn:hover{
       text-decoration:none;
       background: linear-gradient(135deg, #6f4eff, rgba(124,92,255,.95));
-      box-shadow: 0 14px 30px rgba(124,92,255,.38);
+      box-shadow: 0 14px 30px rgba(124,92,255,.45);
       transform: translateY(-1px);
     }
-    .btn:active{ transform: translateY(0px); }
+    .btn:active{ transform: translateY(1px); }
 
     .home-badges{
       display:flex;
@@ -354,10 +316,9 @@
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(236,72,153,.40);
-      background: rgba(236,72,153,.12);
-      color: #fdf4ff;
-      box-shadow: 0 0 10px rgba(236,72,153,.18);
+      border: 1px solid rgba(124,92,255,.30);
+      background: rgba(124,92,255,.10);
+      color: var(--text);
     }
 
     .home-features{
@@ -369,18 +330,17 @@
     .feature{
       padding: 10px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
       font-size: 13px;
-      color: #fdf4ff;
     }
     .feature strong{ display:block; margin-bottom: 4px; color:#f0abfc; }
 
     .home-photo{
       background: rgba(18,20,28,.70);
-      border: 1px solid rgba(124,92,255,.28);
+      border: 1px solid var(--line);
       border-radius: 18px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
       overflow:hidden;
       position:relative;
       min-height: 260px;
@@ -391,25 +351,13 @@
       object-fit: cover;
       display:block;
       opacity: .92;
-      transition: opacity .25s ease, transform .25s ease;
-    }
-    .home-photo img:hover{ opacity: 1; transform: scale(1.02); }
-
-    /* Footer kept (unchanged) */
-    footer{
-      margin-top: 14px;
-      font-size: 12px;
-      color: var(--muted);
-      text-align:center;
     }
 
     @media (max-width: 900px){
-      header{ grid-template-columns: 1fr; }
       .layout{ grid-template-columns: 1fr; }
-      .tabs{ justify-content:flex-start; }
+      .tabs button{ min-width: 0; flex: 1; }
       .home-wrap{ grid-template-columns: 1fr; }
       .home-features{ grid-template-columns: 1fr; }
-      .tabs button{ min-width: unset; width: fit-content; }
     }
   </style>
 </head>
@@ -417,7 +365,6 @@
 <body>
   <div class="page">
     <header>
-      <!-- Logos + photo REMOVED, centered title kept -->
       <div class="title">
         <h1>ZPI-51_appWEB-BilousKateryna-FIOT-2025</h1>
         <h2>з дисципліни «Проєктування WEB-застосунків»</h2>
@@ -437,7 +384,7 @@
 
     <div class="layout">
       <aside>
-        <!-- ✅ Lab 1 menu shows ONLY on lab1 -->
+        <!-- Lab 1 menu shows ONLY on lab1 -->
         <div class="menu" id="leftMenuLab1">
           <button class="is-active wide" data-section="meta">Тема, мета, посилання</button>
           <button class="wide" data-section="logic">Опис предметного середовища<br>та бізнес-логіки</button>
@@ -453,7 +400,7 @@
           <button class="wide" data-section="homeCode">Код головної сторінки (MealPrep Buddy)</button>
         </div>
 
-        <!-- ✅ Lab 2 menu hidden until lab2 selected -->
+        <!-- Lab 2 menu hidden until lab2 selected -->
         <div class="menu" id="leftMenuLab2" hidden>
           <button class="is-active wide" data-section="lab2_meta">Тема, мета, посилання</button>
           <button class="wide" data-section="cssConnect">Способи підключення стилів</button>
@@ -463,7 +410,7 @@
           <button class="wide" data-section="idSelectors">Селектори ідентифікаторів</button>
           <button class="wide" data-section="otherSelectors">Інші селектори</button>
 
-          <button class="wide" data-section="cssShowcase">CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</button>
+          <button class="wide" data-section="cssShowcase">CSS: Приклади з мого сайту</button>
           <button class="wide" data-section="lab2_conclusion">Висновки</button>
         </div>
       </aside>
@@ -634,56 +581,187 @@
 
           <section id="cssConnect" hidden>
             <h3>Способи підключення стилів</h3>
-            <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
-            <pre><code>&lt;style&gt;
-body{ margin:0; }
+            <p class="muted">Приклади:</p>
+            <pre><code>&lt;!-- 1) Зовнішній файл CSS --&gt;
+&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+            <pre><code>&lt;!-- 2) Вбудовані стилі в head --&gt;
+&lt;style&gt;
+  body{ margin:0; }
 &lt;/style&gt;</code></pre>
-            <pre><code>&lt;h1 style="color:#7c5cff;"&gt;MealPrep Buddy&lt;/h1&gt;</code></pre>
+            <pre><code>&lt;!-- 3) Inline-стиль (точково) --&gt;
+&lt;h1 style="color:#7c5cff;"&gt;MealPrep Buddy&lt;/h1&gt;</code></pre>
           </section>
 
           <section id="tagSelectors" hidden>
-            <h3>Селектори тегу</h3>
-            <pre><code>body{ margin:0; }
-a{ text-decoration:none; }
-h1{ font-size: 44px; }</code></pre>
+            <h3>Селектори тегу (з мого CSS)</h3>
+            <pre><code>body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  line-height:1.55;
+}
+
+a{ color:inherit; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+h1{
+  margin:0 0 10px 0;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height:1.12;
+}</code></pre>
           </section>
 
           <section id="classSelectors" hidden>
-            <h3>Селектори класу</h3>
-            <pre><code>.card{ border-radius:18px; }
-.btn{ border-radius:999px; }</code></pre>
+            <h3>Селектори класу (з мого CSS)</h3>
+            <pre><code>.card{
+  border:1px solid var(--line);
+  background: rgba(18,20,28,.70);
+  border-radius:18px;
+  padding:16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.25);
+}
+
+.container{
+  width:min(1100px, 92vw);
+  margin:0 auto;
+}
+
+.btn{
+  border:1px solid rgba(124,92,255,.55);
+  padding:14px 22px;
+  border-radius:999px;
+  background: linear-gradient(135deg, var(--purple), rgba(124,92,255,.85));
+}</code></pre>
           </section>
 
           <section id="idSelectors" hidden>
-            <h3>Селектори ідентифікаторів</h3>
+            <h3>Селектори ідентифікаторів (приклад з проєкту)</h3>
             <pre><code>#plannerGrid{ position: relative; }
 #shoppingList div{ color: #ffd8a8; }</code></pre>
+            <p class="muted">ID використовуються, коли елемент унікальний на сторінці (наприклад, контейнер планера або списку покупок).</p>
           </section>
 
           <section id="otherSelectors" hidden>
-            <h3>Інші селектори</h3>
-            <pre><code>*{ box-sizing:border-box; }</code></pre>
-            <pre><code>input, textarea, button{ font: inherit; }</code></pre>
-            <pre><code>.btn:hover{ transform: translateY(-1px); }</code></pre>
-            <pre><code>@media (max-width: 860px){ .nav{ display:none; } }</code></pre>
+            <h3>Інші селектори (з мого CSS)</h3>
+            <pre><code>/* універсальний селектор */
+*{ box-sizing:border-box; }
+
+/* групування селекторів */
+input, textarea, button{
+  background: rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  color: var(--text);
+  font: inherit;
+}
+
+/* псевдоклас */
+.btn:hover{
+  background: linear-gradient(135deg, #6f4eff, rgba(124,92,255,.95));
+}
+
+/* медіа-запит */
+@media (max-width: 860px){
+  .nav{ display:none; }
+  .menu-btn{ display:inline-flex; }
+}</code></pre>
           </section>
 
           <section id="cssShowcase" hidden>
-            <h3>CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</h3>
-            <p class="muted">Вставиш свої приклади з проєкту.</p>
+            <h3>CSS: Приклади з мого сайту (фрагменти)</h3>
+
+            <h3>1) CSS-змінні (палітра)</h3>
+            <pre><code>:root{
+  --bg:#0b0c10;
+  --card:#12141c;
+  --text:#e9ecf1;
+  --muted:#b3b9c6;
+  --line:rgba(255,255,255,.12);
+  --purple:#7c5cff;
+}</code></pre>
+
+            <h3>2) Фон сторінки (градієнти)</h3>
+            <pre><code>body{
+  background:
+    radial-gradient(1200px 700px at 15% 10%, rgba(96,165,250,.18), transparent 55%),
+    radial-gradient(1100px 700px at 85% 5%, rgba(110,231,183,.14), transparent 55%),
+    var(--bg);
+}</code></pre>
+
+            <h3>3) Картки / блоки</h3>
+            <pre><code>.card{
+  border:1px solid var(--line);
+  background: rgba(18,20,28,.70);
+  border-radius:18px;
+  padding:16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.25);
+}</code></pre>
+
+            <h3>4) Кнопки (єдиний стиль .btn)</h3>
+            <pre><code>.btn{
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+
+  border:1px solid rgba(124,92,255,.55);
+  padding:14px 22px;
+  border-radius:999px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+  background: linear-gradient(135deg, var(--purple), rgba(124,92,255,.85));
+  box-shadow: 0 10px 24px rgba(124,92,255,.35);
+}</code></pre>
+
+            <h3>5) Форми та фокус</h3>
+            <pre><code>input, textarea, button{
+  background: rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  color: var(--text);
+  padding:10px 12px;
+  border-radius:14px;
+  outline:none;
+  font: inherit;
+}
+
+input:focus, textarea:focus{
+  border-color: rgba(124,92,255,.65);
+}</code></pre>
+
+            <h3>6) Select FIX (читабельні опції)</h3>
+            <pre><code>select{
+  background: rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  color: var(--text);
+  padding:10px 12px;
+  border-radius:14px;
+  color-scheme: light;
+}
+
+select option{
+  background: #ffffff;
+  color: #111111;
+}</code></pre>
+
+            <h3>7) Адаптивність (@media)</h3>
+            <pre><code>@media (max-width: 860px){
+  .cards-3{ grid-template-columns: 1fr; }
+  .grid-2{ grid-template-columns: 1fr; }
+  .nav{ display:none; }
+  .menu-btn{ display:inline-flex; }
+}</code></pre>
           </section>
 
           <section id="lab2_conclusion" hidden>
             <h3>Висновки</h3>
-            <p class="muted">Вставиш висновки.</p>
+            <p>У цій лабораторній роботі було розглянуто підключення CSS, роботу з селекторами (tag/class/id та інші), а також застосовано оформлення інтерфейсу: фон, картки, кнопки, форми, виправлення для <code>select</code> та адаптивність через <code>@media</code>.</p>
           </section>
         </div>
       </main>
     </div>
-
-    <footer>
-      © Звітний HTML-документ лабораторних робіт (FIOT-2025)
-    </footer>
   </div>
 
   <script>
